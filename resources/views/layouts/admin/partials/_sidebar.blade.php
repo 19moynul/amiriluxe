@@ -433,7 +433,7 @@
                             <i class="tio-category nav-icon"></i>
                             <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{ translate('messages.categories') }}</span>
                         </a>
-                        <ul class="js-navbar-vertical-aside-submenu nav nav-sub"  style="display:{{ Request::is('admin/category*') ? 'block' : 'none' }}">
+                        <ul class="js-navbar-vertical-aside-submenu nav nav-sub"  style="display:{{ Request::is('admin/brand/*') ? 'block' : 'none' }}">
                             <li class="nav-item {{ Request::is('admin/category/add') ? 'active' : '' }}">
                                 <a class="nav-link " href="{{ route('admin.category.add') }}" title="{{ translate('messages.category') }}">
                                     <span class="tio-circle nav-indicator-icon"></span>
@@ -466,6 +466,27 @@
                                 <span class="text-truncate text-capitalize">{{ translate('messages.bulk_export') }}</span>
                             </a>
                         </li>
+                    </ul>
+                </li>
+                    <li class="navbar-vertical-aside-has-menu {{ Request::is('admin/brand*') ? 'active' : '' }}">
+                        <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:" title="{{ translate('Brands') }}">
+                            <i class="tio-category nav-icon"></i>
+                            <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{ translate('Brands') }}</span>
+                        </a>
+                        <ul class="js-navbar-vertical-aside-submenu nav nav-sub"  style="display:{{ Request::is('admin/brand/*') ? 'block' : 'none' }}">
+                            <li class="nav-item {{ Request::is('admin/brand/create') ? 'active' : '' }}">
+                                <a class="nav-link " href="{{ route('admin.brand.create') }}" title="{{ translate('Create Brand') }}">
+                                    <span class="tio-circle nav-indicator-icon"></span>
+                                    <span class="text-truncate">{{ translate('Add New Brand') }}</span>
+                                </a>
+                            </li>
+                            <li class="nav-item {{ Request::is('admin/brand/list') || Request::is('admin/brand/edit/*') ? 'active' : '' }}">
+                                <a class="nav-link " href="{{ route('admin.brand.list') }}" title="{{ translate('Create Brand') }}">
+                                    <span class="tio-circle nav-indicator-icon"></span>
+                                    <span class="text-truncate">{{ translate('Brand List') }}</span>
+                                </a>
+                            </li>
+
                     </ul>
                 </li>
                 @endif
