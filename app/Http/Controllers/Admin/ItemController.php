@@ -15,6 +15,7 @@ use App\CentralLogics\Helpers;
 use App\CentralLogics\ProductLogic;
 use App\Models\ItemCampaign;
 use App\Models\Tag;
+use App\Models\Brand;
 use Rap2hpoutre\FastExcel\FastExcel;
 use Illuminate\Support\Facades\DB;
 use App\Scopes\StoreScope;
@@ -25,7 +26,8 @@ class ItemController extends Controller
     public function index()
     {
         $categories = Category::where(['position' => 0])->get();
-        return view('admin-views.product.index', compact('categories'));
+        $brands = Brand::where('status',1)->get();
+        return view('admin-views.product.index', compact('categories','brands'));
     }
 
     public function store(Request $request)
@@ -59,7 +61,7 @@ class ItemController extends Controller
         if ($request['price'] <= $dis || $validator->fails()) {
             return response()->json(['errors' => Helpers::error_processor($validator)]);
         }
-        
+
         $tag_ids = [];
         if ($request->tags != null) {
             $tags = explode(",", $request->tags);
@@ -76,7 +78,7 @@ class ItemController extends Controller
 
         $item = new Item;
         $item->name = $request->name[array_search('en', $request->lang)];
-
+        $item->brand_id=$request->brand_id;
         $category = [];
         if ($request->category_id != null) {
             array_push($category, [
@@ -259,7 +261,9 @@ class ItemController extends Controller
             $sub_category = null;
         }
 
-        return view('admin-views.product.edit', compact('product', 'sub_category', 'category'));
+        $brands = Brand::where('status',1)->get();
+
+        return view('admin-views.product.edit', compact('product', 'sub_category', 'category','brands'));
     }
 
     public function status(Request $request)
@@ -302,7 +306,7 @@ class ItemController extends Controller
         if ($request['price'] <= $dis || $validator->fails()) {
             return response()->json(['errors' => Helpers::error_processor($validator)]);
         }
-        
+
         $tag_ids = [];
         if ($request->tags != null) {
             $tags = explode(",", $request->tags);
@@ -320,6 +324,7 @@ class ItemController extends Controller
         $item = Item::withoutGlobalScope(StoreScope::class)->find($id);
 
         $item->name = $request->name[array_search('en', $request->lang)];
+        $item->brand_id=$request->brand_id;
 
         $category = [];
         if ($request->category_id != null) {

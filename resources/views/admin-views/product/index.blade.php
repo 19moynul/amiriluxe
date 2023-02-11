@@ -186,10 +186,24 @@
                                             for="sub-categories">{{ translate('messages.sub_category') }}<span
                                                 class="input-label-secondary"
                                                 title="{{ translate('messages.category_required_warning') }}"><img
-                                                    src="{{ asset('/public/assets/admin/img/info-circle.svg') }}"
+                                                    src="{{ asset('assets/admin/img/info-circle.svg') }}"
                                                     alt="{{ translate('messages.category_required_warning') }}"></span></label>
                                         <select name="sub_category_id" class="js-data-example-ajax form-control"
                                             id="sub-categories">
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-lg-4">
+                                    <div class="form-group mb-0">
+                                        <label class="input-label"
+                                            for="sub-categories">{{ translate('messages.brand') }}</label>
+                                        <select name="brand_id" class="js-data-example-ajax form-control"
+                                            id="brand_id">
+                                            <option value="">Select Brand</option>
+                                            @foreach($brands as $brand)
+                                                <option value="{{ $brand->id }}">{{ $brand->name_en }}</option>
+                                            @endforeach
 
                                         </select>
                                     </div>
@@ -703,6 +717,7 @@
                 var select2 = $.HSCore.components.HSSelect2.init($(this));
             });
         });
+        $('#brand_id').select2({});
         $('#store_id').select2({
             ajax: {
                 url: '{{ url('/') }}/admin/store/get-stores',

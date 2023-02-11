@@ -254,6 +254,7 @@
                         <th class="border-0">{{translate('sl')}}</th>
                         <th class="border-0">{{translate('messages.name')}}</th>
                         <th class="border-0">{{translate('messages.category')}}</th>
+                        <th class="border-0">{{translate('messages.brand')}}</th>
                         <th class="border-0">{{translate('messages.store')}}</th>
                         <th class="border-0 text-center">{{translate('messages.price')}}</th>
                         <th class="border-0 text-center">{{translate('messages.status')}}</th>
@@ -276,6 +277,9 @@
                             </td>
                             <td>
                             {{Str::limit($item->category?$item->category->name:translate('messages.category_deleted'),20,'...')}}
+                            </td>
+                            <td>
+                            {{Str::limit(optional($item->brand)->name_en,20,'...')}}
                             </td>
                             <td>
                             {{Str::limit($item->store?$item->store->name:translate('messages.store deleted!'), 20, '...')}}

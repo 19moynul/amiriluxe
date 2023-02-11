@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\BrandController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['namespace' => 'Api\V1', 'middleware'=>'localization'], function () {
     Route::get('zone/list', 'ZoneController@get_zones');
     Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
+        Route::post('sign-up', 'CustomerAuthController@register');
         Route::post('sign-up', 'CustomerAuthController@register');
         Route::post('login', 'CustomerAuthController@login');
         Route::post('verify-phone', 'CustomerAuthController@verify_phone');
@@ -185,6 +187,12 @@ Route::group(['namespace' => 'Api\V1', 'middleware'=>'localization'], function (
         Route::get('geocode-api', 'ConfigController@geocode_api');
     });
 
+    Route::group(['prefix' => 'brand'], function () {
+        Route::get('/list',[BrandController::class,'list']);
+        Route::get('/list/all',[BrandController::class,'list']);
+        Route::get('/products/{brand_id}',[BrandController::class,'brandProducts']);
+    });
+
     Route::group(['middleware'=>['module-check']], function(){
         Route::group(['prefix' => 'customer', 'middleware' => 'auth:api'], function () {
             Route::get('notifications', 'NotificationController@get_notifications');
@@ -218,6 +226,7 @@ Route::group(['namespace' => 'Api\V1', 'middleware'=>'localization'], function (
             });
 
 
+
             // Chatting
             Route::group(['prefix' => 'message'], function () {
                 Route::get('list', 'ConversationController@conversations');
@@ -243,6 +252,8 @@ Route::group(['namespace' => 'Api\V1', 'middleware'=>'localization'], function (
             });
 
         });
+
+
 
         Route::group(['prefix' => 'items'], function () {
             Route::get('latest', 'ItemController@get_latest_products');

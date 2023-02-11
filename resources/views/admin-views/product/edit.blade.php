@@ -194,6 +194,20 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-sm-6 col-lg-4">
+                                    <div class="form-group mb-0">
+                                        <label class="input-label"
+                                            for="sub-categories">{{ translate('messages.brand') }}</label>
+                                        <select name="brand_id" class="js-data-example-ajax form-control"
+                                            id="brand_id">
+                                            <option value="">Select Brand</option>
+                                            @foreach($brands as $brand)
+                                                <option value="{{ $brand->id }}" {{ $brand->id==$product->brand_id?'selected':'' }}>{{ $brand->name_en }}</option>
+                                            @endforeach
+
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="col-sm-6 col-lg-4" id="stock_input">
                                     <div class="form-group mb-0">
                                         <label class="input-label" for="total_stock">{{translate('messages.total_stock')}}</label>
@@ -789,6 +803,8 @@
                 }
             }
         });
+
+         $('#brand_id').select2({});
 
         $('#category_id').select2({
             ajax: {

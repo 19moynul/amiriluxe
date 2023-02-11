@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BrandController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -274,6 +275,14 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
                 Route::post('bulk-export', 'CategoryController@bulk_export_data')->name('bulk-export');
             });
         });
+
+        Route::get('brand/create', [BrandController::class, 'create'])->name('brand.create');
+        Route::post('brand/store', [BrandController::class, 'store'])->name('brand.store');
+        Route::get('brand/list', [BrandController::class, 'list'])->name('brand.list');
+        Route::get('brand/view', [BrandController::class, 'list'])->name('brand.view');
+        Route::get('brand/edit/{id}', [BrandController::class, 'edit'])->name('brand.edit');
+        Route::get('brand/delete/{id}', [BrandController::class, 'delete'])->name('brand.delete');
+
         Route::get('order/generate-invoice/{id}', 'OrderController@generate_invoice')->name('order.generate-invoice');
         Route::get('order/print-invoice/{id}', 'OrderController@print_invoice')->name('order.print-invoice');
         Route::get('order/status', 'OrderController@status')->name('order.status');

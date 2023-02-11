@@ -9,7 +9,7 @@ if (! function_exists('translate')) {
         if(strpos($key, 'validation.') === 0 || strpos($key, 'passwords.') === 0 || strpos($key, 'pagination.') === 0 || strpos($key, 'order_texts.') === 0) {
             return trans($key, $replace);
         }
-        
+
         $key = strpos($key, 'messages.') === 0?substr($key,9):$key;
         $local = Helpers::default_lang();
         App::setLocale($local);
@@ -31,5 +31,25 @@ if (! function_exists('translate')) {
         }
 
         return $result;
+    }
+
+    function serverError(){
+        return ['success'=>false,'message'=>'Sorry ! something went wrong with server . please try later'];
+    }
+
+    if (!function_exists("getFormInfo")) {
+        function getFormInfo($isEditInfo,$others=[])
+        {
+            if($isEditInfo){
+                $info = ['title' => 'EDIT', 'status' => 'success', 'button_name' => 'UPDATE', 'image_class' => 'edit-input'];
+            }else{
+                $info = ['title' => 'CREATE', 'status' => 'success', 'button_name' => 'CREATE', 'image_class' => ''];
+            }
+            return array_merge($info,$others);
+        }
+    }
+
+    function defaultLimit(){
+        return 10;
     }
 }

@@ -399,6 +399,7 @@
   'sign_in' => 'Sign in',
   'size' => 'size',
   'sub_category' => 'Sub Category',
+  'brand' => 'Brand',
   'subscription_successful' => 'Subscription successful',
   'subscription_exist' => 'Subscription email already exist',
   'subscribed_mail_list' => 'Subscribed Emails',
@@ -2358,4 +2359,6 @@
   'Deducting the admin commission on the delivery fee, the delivery fee & tips amount goes to
                                         earning section.' => 'Deducting the admin commission on the delivery fee  the delivery fee & tips amount goes to
                                         earning section.',
+  'Test Grocery' => 'Test Grocery',
+  'Amiriluxe' => 'Amiriluxe',
 );
