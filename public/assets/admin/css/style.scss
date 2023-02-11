@@ -12,6 +12,66 @@
     --danger-clr: #ff6d6d;
     --success-clr: #00aa6d;
     --info-clr: #0096ff;
+
+
+    --miContentBackgroundColor: #edf1f7;
+    --miCardBackgroundColor: #fff;
+    --miCardbg: #fff;
+    --miOutsideBorderColor: #edf1f7;
+    --mi-inside-border-color: #edf1f7;
+    --btnCloseColor: #8f9bb3;
+    // --sortLimitFieldBackgroundColor:#192038;
+    // --sortLimitFieldBorderColor:#101426;
+    --fieldBgcolor: #f7f9fc;
+    --fieldBorderColor: #e4e9f2;
+    --fieldTextColor: #222b45;
+    //hover
+    --fieldBgcolorHover: #edf1f7;
+    --fieldBorderColorHover: #e4e9f2;
+    //focus
+    --fieldBorderColorFocus: #598bff;
+    //label
+    --labelColor: #555;
+
+    //button basic
+    --butnBasicBgColor: #edf1f7;
+    --butnBasicColor: #222b45;
+    //button Primary
+    --butnPrimaryBgColor: #598bff;
+    --butnPrimaryColor: #fff;
+    //button Success
+    --butnSuccessBgColor: #00A7A0;
+    --butnSuccessColor: #fff;
+    //button Info
+    --butnInfoBgColor: #7A0649;
+    --butnInfoColor: #fff;
+    //button Warning
+    --butnWarningBgColor: #ffaa00;
+    --butnWarningColor: #fff;
+    //button Danger
+    --butnDangerBgColor: #ff3d71;
+    --butnDangerColor: #fff;
+
+    --buttonBasicTransparentBgColor: rgba(143, 155, 179, .16);
+    --buttonPrimaryTransparentBgColor: rgba(51, 102, 255, .08);
+    --buttonSuccessTransparentBgColor: rgba(0, 214, 143, .08);
+    --buttonInfoTransparentBgColor: rgba(0, 149, 255, .08);
+    --buttonWarningTransparentBgColor: rgba(255, 170, 0, .16);
+    --buttonDangerTransparentBgColor: rgba(255, 61, 113, .08);
+
+    --primaryBorderColor: #36f;
+    --successBorderColor: #00d68f;
+    --InfoBorderColor: #0095ff;
+    --warningBorderColor: #fa0;
+    --dangerBorderColor: #ff3d71;
+
+    --basicTextColor: rgba(143, 155, 179, .48);
+    --primaryTextColor: #36f;
+    --successTextColor: #00d68f;
+    --InfoTextColor: #0095ff;
+    --warningTextColor: #fa0;
+    --dangerTextColor: #ff3d71;
+
 }
 
 :root {
@@ -7302,4 +7362,288 @@ ul.delivery--information-single li:not(:last-child) {
 }
 .text-FF7500 {
     color: #ff7500;
+}
+
+
+
+.mi-card {
+    width: 100%;
+    margin-bottom: 20px;
+    border: 0.0625rem solid;
+    border-radius: 10px;
+    overflow: hidden;
+    border-color: var(--miOutsideBorderColor);
+    background-color: var(--miCardbg);
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+
+    .mi-header {
+        padding: 2rem 1.5rem;
+        text-transform: uppercase;
+        border-bottom: 1px solid;
+        border-top-left-radius: .25rem;
+        border-top-right-radius: .25rem;
+        font-family: Open Sans, sans-serif !important;
+        font-size: 1.6375rem !important;
+        font-weight: 800 !important;
+        line-height: 1.5rem !important;
+        border-color: var(--mi-inside-border-color);
+        position: relative;
+
+        .mi-right{
+                position: absolute;
+    right: 15px;
+    top: 10px;
+        }
+
+        &.header-sm {
+            padding: 0.7rem 1.5rem !important;
+        }
+
+        .btn-close {
+            color: var(--btnCloseColor) !important;
+        }
+
+        .mi-search {
+            float: right;
+            margin-top: -8px;
+        }
+
+        .sort {
+            width: 150px
+        }
+
+        .limit {
+            width: 125px
+        }
+
+        .sort,
+        .limit {
+            border-radius: 0.25rem;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            line-height: 1.5rem;
+            padding: 0.4375rem 1rem;
+            background-color: var(--fieldBgcolor);
+            border-color: var(--fieldBorderColor);
+            color: var(--fieldTextColor);
+            float: right;
+            margin-right: 10px;
+
+            &:focus {
+                outline: none;
+                outline-width: 0;
+                box-shadow: none;
+                border: 0.0625rem solid;
+                border-color: var(--fieldBorderColorFocus);
+
+            }
+
+            &:hover {
+                background-color: var(--fieldBgcolorHover);
+                border-color: var(--fieldBorderColor);
+            }
+        }
+    }
+
+
+    .mi-body {
+        padding: 15px 15px;
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        label {
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            font-weight: 700;
+            color: var(--labelColor);
+        }
+
+        input,
+        textarea,
+        select {
+            border-radius: 0.25rem;
+            font-size: 14px !important;
+            font-weight: 600 !important;
+            line-height: 1.5rem;
+            padding: 19px 1rem;
+            background-color: var(--fieldBgcolor) !important;
+            border-color: var(--fieldBorderColor) !important;
+            color: var(--fieldTextColor) !important;
+            outline: none;
+            outline-width: 0;
+            box-shadow: none;
+            border: 0.0625rem solid;
+
+            &:focus {
+                outline: none;
+                outline-width: 0;
+                box-shadow: none;
+                border: 0.0625rem solid;
+                border-color: var(--fieldBorderColorFocus);
+
+            }
+
+            &:hover {
+                background-color: var(--fieldBgcolorHover);
+                border-color: var(--fieldBorderColorHover);
+            }
+        }
+
+        .pr-0{
+            padding-right: 0px !important;
+        }
+
+
+        textarea {}
+    }
+
+    .mi-footer {
+        border-top: 0.0625rem solid;
+        border-color: var(--mi-inside-border-color);
+        padding: 15px;
+    }
+}
+
+
+.create {
+    .mi-header {
+        background-color: var(--miCardBackgroundColor);
+        border-color: var(--mi-inside-border-color);
+        color: white
+    }
+
+    .mi-footer {
+        button {
+            padding: 0.6875rem 1.125rem;
+            border-style: solid;
+            border-width: 0.0625rem;
+            text-transform: uppercase;
+            border-radius: 0.25rem;
+            font-size: .875rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            line-height: 1rem;
+            background-color: #2ce69b;
+            border-color: #2ce69b;
+            color: #fff;
+        }
+    }
+}
+
+
+
+.butn {
+    padding: 1.3rem 1.125rem;
+    border-style: solid;
+    border-width: 0.0625rem;
+    text-transform: uppercase;
+    border-radius: 0.25rem;
+    font-size: 13px !important;
+    font-weight: 600;
+    letter-spacing: 1px;
+    line-height: 1rem;
+    font-family: Open Sans, sans-serif;
+}
+
+.basic {
+    background-color: var(--butnBasicBgColor);
+    border-color: var(--butnBasicBgColor);
+    color: var(--butnBasicColor);
+}
+
+.primary {
+    background-color: var(--butnPrimaryBgColor);
+    border-color: var(--butnPrimaryBgColor);
+    color: var(--butnPrimaryColor);
+}
+
+.success {
+    background-color: var(--butnSuccessBgColor);
+    border-color: var(--butnSuccessBgColor);
+    color: var(--butnSuccessColor);
+}
+
+.info {
+    // background-color: #0095ff;
+    // border-color: #0095ff;
+    background-color: var(--butnInfoBgColor);
+    border-color: var(--butnInfoBgColor) !important;
+    color: var(--butnInfoColor);
+}
+
+.warning {
+    background-color: var(--butnWarningBgColor);
+    border-color: var(--butnWarningBgColor);
+    color: var(--butnWarningColor);
+}
+
+.danger {
+    background-color: var(--butnDangerBgColor);
+    border-color: var(--butnDangerBgColor);
+    color: var(--butnDangerColor);
+}
+
+
+.basic.transparent {
+    background-color: var(--buttonBasicTransparentBgColor) !important;
+    color: var(--basicTextColor) !important;
+}
+
+.primary.transparent {
+    background-color: var(--buttonPrimaryTransparentBgColor) !important;
+    border-color: var(--primaryBorderColor) !important;
+    color: var(--primaryTextColor) !important;
+}
+
+.success.transparent {
+    background-color: var(--buttonSuccessTransparentBgColor) !important;
+    border-color: var(--successBorderColor) !important;
+    color: var(--successTextColor) !important;
+}
+
+.info.transparent {
+    background-color: var(--buttonInfoTransparentBgColor) !important;
+    border-color: var(--InfoBorderColor) !important;
+    color: var(--InfoTextColor) !important;
+}
+
+.warning.transparent {
+    background-color: var(--buttonWarningTransparentBgColor) !important;
+    border-color: var(--warningBorderColor) !important;
+    color: var(--warningTextColor) !important;
+}
+
+.danger.transparent {
+    background-color: var(--buttonDangerTransparentBgColor) !important;
+    border-color: var(--dangerBorderColor) !important;
+    color: var(--dangerTextColor) !important;
+}
+
+
+.mi-content {
+  background: var(--miContentBackgroundColor);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0;
+          flex: 1 0;
+  min-width: 0;
+  min-height: 95vh;
+  padding: 15px 10px 15px 3px;
+  color: #fff;
+  font-family: Open Sans, sans-serif;
+  font-size: .9375rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  position: relative;
 }
