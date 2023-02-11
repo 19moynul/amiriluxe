@@ -22,7 +22,7 @@
         <!-- End Page Header -->
         <div class="card">
             <div class="card-body">
-                <form action="{{isset($category)?route('admin.category.update',[$category['id']]):route('admin.category.store')}}" method="post">
+                <form action="{{isset($category)?route('admin.category.update',[$category['id']]):route('admin.category.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 @php($language=\App\Models\BusinessSetting::where('key','language')->first())
                 @php($language = $language->value ?? null)
@@ -50,7 +50,12 @@
                     </div>
                     <input type="hidden" name="lang[]" value="{{$lang}}">
                 @endif
-                    <div class="form-group">
+                <div class="row">
+                        <div class="form-group col-sm-6">
+                    <label for="">IMAGE</label>
+                    <input type="file" name="image" id="image" class="form-control">
+                </div>
+                    <div class="form-group col-sm-6">
                         <label class="input-label"
                             for="exampleFormControlSelect1">{{translate('messages.main')}} {{translate('messages.category')}}
                             <span class="input-label-secondary">*</span></label>
@@ -60,6 +65,7 @@
                                 <option value="{{$cat['id']}}" {{isset($category)?($category['parent_id']==$cat['id']?'selected':''):''}} >{{$cat['name']}} ({{Str::limit($cat->module->module_name, 15, '...')}})</option>
                             @endforeach
                         </select>
+                    </div
                     </div>
                     <input name="position" value="1" hidden>
 
@@ -150,7 +156,7 @@
                         <thead class="thead-light">
                             <tr>
                                 <th class="border-0">{{translate('sl')}}</th>
-                                <th class="border-0">{{translate('messages.id')}}</th>
+                                <th class="border-0">{{translate('messages.image')}}</th>
                                 <th class="border-0 w--1">{{translate('messages.main')}} {{translate('messages.category')}}</th>
                                 <th class="border-0 text-center">{{translate('messages.sub_category')}}</th>
                                 <th class="border-0 text-center">{{translate('messages.status')}}</th>
@@ -163,7 +169,10 @@
                         @foreach($categories as $key=>$category)
                             <tr>
                                 <td>{{$key+$categories->firstItem()}}</td>
-                                <td>{{$category->id}}</td>
+                                <td><img class="img--100" id="viewer"
+                                        src="{{asset('storage/app/public/category')}}/{{$category['image']}}"
+                                        onerror='this.src="{{asset('public/assets/admin/img/900x400/img1.jpg')}}"'
+                                        alt=""/></td>
                                 <td>
                                     <span class="d-block font-size-sm text-body">
                                         {{Str::limit($category->parent['name'],20,'...')}}

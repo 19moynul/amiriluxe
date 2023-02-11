@@ -82,7 +82,7 @@
                             @endif
                         </div>
                         <div class="col-md-6">
-                            @if ($category->position == 0)
+                            {{-- @if ($category->position == 0) --}}
                             <div class="h-100 d-flex flex-column">
                                 <label class="mb-0">{{translate('messages.image')}}
                                     <small class="text-danger">* ( {{translate('messages.ratio')}} 1:1 )</small>
@@ -99,7 +99,7 @@
                                     <label class="custom-file-label mb-0" for="customFileEg1">{{translate('messages.choose')}} {{translate('messages.file')}}</label>
                                 </div>
                             </div>
-                            @endif
+                            {{-- @endif --}}
                         </div>
                     </div>
                     <div class="btn--container justify-content-end mt-3">
