@@ -17,16 +17,26 @@ class Category extends Model
         'status' => 'integer'
     ];
 
+    protected $appends = ['image_url'];
+
     public function translations()
     {
         return $this->morphMany(Translation::class, 'translationable');
+    }
+
+    public function getImageUrlAttribute(){
+        if($this->image){
+            return url('/storage/app/public/'.$this->image);
+        }
+
+        return null;
     }
 
     public function module()
     {
         return $this->belongsTo(Module::class);
     }
-    
+
     public function scopeModule($query, $module_id)
     {
         return $query->where('module_id', $module_id);

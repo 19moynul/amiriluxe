@@ -6,6 +6,7 @@ use App\CentralLogics\Helpers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Module;
+use App\Models\Item;
 use App\Models\Translation;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Storage;
@@ -239,5 +240,11 @@ class ModuleController extends Controller
         }elseif($request->type == 'csv'){
             return (new FastExcel($modules))->download('Module.csv');
         }
+    }
+
+
+    public function moduleProduct($module_id){
+        $data = Item::select('id','name as text')->where('module_id',$module_id)->get();
+        return response()->json(['data'=>$data]);
     }
 }

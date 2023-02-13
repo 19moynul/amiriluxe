@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\BusinesscategoryController;
+use App\Http\Controllers\Admin\ModuleController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -11,6 +13,8 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
         Route::post('login', 'LoginController@submit')->middleware('actch');
         Route::get('logout', 'LoginController@logout')->name('logout');
     });
+
+    Route::get('/module-product/{module_id}',[ModuleController::class,'moduleProduct']);
     /*authentication*/
 
     Route::group(['middleware' => ['admin']], function () {
@@ -282,6 +286,13 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
         Route::get('brand/view', [BrandController::class, 'list'])->name('brand.view');
         Route::get('brand/edit/{id}', [BrandController::class, 'edit'])->name('brand.edit');
         Route::get('brand/delete/{id}', [BrandController::class, 'delete'])->name('brand.delete');
+
+        Route::get('business-category/create', [BusinesscategoryController::class, 'create'])->name('business-category.create');
+        Route::post('business-category/store', [BusinesscategoryController::class, 'store'])->name('business-category.store');
+        Route::get('business-category/list', [BusinesscategoryController::class, 'list'])->name('business-category.list');
+        Route::get('business-category/view', [BusinesscategoryController::class, 'list'])->name('business-category.view');
+        Route::get('business-category/edit/{id}', [BusinesscategoryController::class, 'edit'])->name('business-category.edit');
+        Route::get('business-category/delete/{id}', [BusinesscategoryController::class, 'delete'])->name('business-category.delete');
 
         Route::get('order/generate-invoice/{id}', 'OrderController@generate_invoice')->name('order.generate-invoice');
         Route::get('order/print-invoice/{id}', 'OrderController@print_invoice')->name('order.print-invoice');
