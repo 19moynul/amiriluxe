@@ -1,6 +1,12 @@
 @extends('layouts.admin.app')
 @section('content')
 <div class="row">
+    <style>
+        .select2-selection--multiple{
+            overflow: hidden !important;
+            height: auto !important;
+        }
+    </style>
     <div class="col-sm-7 m-auto">
         <div class="mi-card">
             <!--start of mi-card-->
