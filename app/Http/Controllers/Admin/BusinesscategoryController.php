@@ -11,6 +11,7 @@ use App\Models\BusinessBanner;
 use App\Models\BusinessCategoryImage;
 use App\Models\BusinessCategoryProduct;
 use App\Models\Item;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Log;
 use DB;
 
@@ -102,13 +103,13 @@ class BusinesscategoryController extends Controller
             }
 
             DB::commit();
-            return redirect()
-                ->back()
-                ->with('success', 'Data saved successfully');
+            Toastr::success('Data saved successfully');
+            return redirect()->back();
         } catch (\Exception $e) {
             return $e;
             DB::rollback();
             Log::error('Businesscategory -> store : ' . $e->getMessage());
+            Toastr::error('Sorry something went wrong with server . please try later');
             return redirect()
                 ->back()
                 ->with('error', serverError());

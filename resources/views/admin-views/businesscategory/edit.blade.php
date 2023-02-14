@@ -116,19 +116,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
     $(document).ready(function () {
-        $('#type').change(function () {
-            $('.all-fields').css('display', 'block');
-            if ($(this).val() == 1) {
-
-
-
-            } else {
-                $('#products').css('display', 'block');
-                $('#images').css('display', 'none');
-            }
-        })
-
-
         var type = <?= $data->type ?>;
 
         if(type==1){
@@ -140,7 +127,8 @@
             $('#products-field').val(selectedProducts).change();
         }
 
-        $('#module_id').select2({});
+        $('#module_id').select2({}).enable(false);
+        $('#type').select2({}).enable(false);
 
     })
 
