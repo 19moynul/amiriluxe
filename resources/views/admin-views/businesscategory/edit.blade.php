@@ -135,14 +135,15 @@
             $('#images').css('display', 'block');
         }else{
             $('#products').css('display', 'block');
+             $('#products-field').select2({});
+            var selectedProducts = <?= json_encode($products); ?>;
+            $('#products-field').val(selectedProducts).change();
         }
 
         $('#module_id').select2({});
 
     })
-    $('#products-field').select2({});
-    var selectedProducts = <?= json_encode($products); ?>;
-    $('#products-field').val(selectedProducts).change();
+
 
 </script>
 <!--end of mi-card-->
