@@ -126,11 +126,10 @@ class BusinesscategoryController extends Controller
 
     public function delete($id)
     {
-        $bCategory = Businesscategory::find($id)->first();
+        $bCategory = Businesscategory::where('id',$id)->first();
         if($bCategory){
             if($bCategory->type==2){
                 BusinessCategoryProduct::where('category_id',$bCategory->id)->delete();
-                $bCategory->delete();
             }else{
                 $allImages = BusinessBanner::where(['category_id'=>$bCategory->id])->get();
                 foreach($allImages as $image){
@@ -141,6 +140,7 @@ class BusinesscategoryController extends Controller
                     $image->delete();
                 }
             }
+            $bCategory->delete();
         }
         Toastr::success('Data deleted successfully');
         return redirect()->back();
