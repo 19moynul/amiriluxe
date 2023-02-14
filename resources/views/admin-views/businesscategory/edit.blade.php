@@ -18,7 +18,7 @@
                     @include('layouts.admin.toaster')
                     <!--mi-card body started--> <input name="_token" type="hidden" value="{{ csrf_token() }}">
                     <div class="form-group ">
-                        <label>TYPE <b class="text-danger">*</b> </label>
+                        <label>TYPE (CAN'T CHANGE)<b class="text-danger">*</b> </label>
                         <select class="form-control" id="type" name="type" id="type" required disabled>
                             <option selected>SELECT ONE </option>
                             <option value="1" {{ $data->type==1?'selected':'' }} >Slider</option>
@@ -65,7 +65,7 @@
                             </div>
                         </div>
                         <div class="form-group ">
-                            <label>SELECT MODULE <b class="text-danger">*</b> </label>
+                            <label>SELECT MODULE (CAN'T CHANGE) <b class="text-danger">*</b> </label>
                             <select class="form-control" id="module_id" name="module_id" required disabled>
                                 <option selected>SELECT ONE </option>
                                 @foreach($modules as $option)
