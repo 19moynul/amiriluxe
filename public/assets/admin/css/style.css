@@ -57,6 +57,12 @@
     --InfoTextColor: #0095ff;
     --warningTextColor: #fa0;
     --dangerTextColor: #ff3d71;
+
+     --tabBorderCOlor: #151a30;
+    --tabBgCOlor: #192038;
+    --tabTitleColor: #8f9bb3;
+    --tabTitleActiveColor: #ff3d71;
+    --tabTitleActiveBorderColor: #ff3d71;
 }
 
 :root {
