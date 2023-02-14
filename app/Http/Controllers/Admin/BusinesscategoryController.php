@@ -40,8 +40,13 @@ class BusinesscategoryController extends Controller
     public function edit($id)
     {
         $modules = Module::get();
-        $data = Businesscategory::where('id', $id)->first();
-        return view('admin-views.businesscategory.edit', compact('data', 'modules'));
+        $data = Businesscategory::with('products')->where('id', $id)->first();
+        if($data->type == 2){
+            $products = BusinessCategoryProduct::where('category_id',$data->id)->pluck('product_id');
+        }else{
+            $products = [];
+        }
+        return view('admin-views.businesscategory.edit', compact('data', 'modules','products'));
     }
     public function view($id)
     {
