@@ -3,7 +3,7 @@
 @section('content')
 <div class="row ms-15 me-15">
     <div class="mi-card ">
-        <div class="mi-header info transparent"> LIST OF PRODUCTS : {{ $category->name }}</div>
+        <div class="mi-header info transparent"> LIST OF PRODUCTS : {{ $category->name_en }}</div>
         <div class="mi-body">
             <table class="mi-table table table-bordered table-striped">
                 <thead>
