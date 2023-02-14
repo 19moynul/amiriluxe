@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Models\BusinessBanner;
 use App\Models\BusinessCategoryImage;
 use App\Models\BusinessCategoryProduct;
+use App\Models\Item;
 use Illuminate\Support\Facades\Log;
 use DB;
 
@@ -46,7 +47,9 @@ class BusinesscategoryController extends Controller
         }else{
             $products = [];
         }
-        return view('admin-views.businesscategory.edit', compact('data', 'modules','products'));
+
+        $moduleProducts = Item::where('module_id',$data->module_id)->first();
+        return view('admin-views.businesscategory.edit', compact('data', 'modules','products','moduleProducts'));
     }
     public function view($id)
     {

@@ -66,7 +66,7 @@
                         </div>
                         <div class="form-group ">
                             <label>SELECT MODULE <b class="text-danger">*</b> </label>
-                            <select class="form-control" id="module_id" name="module_id" onchange="modulChange(this.value)" required readonly>
+                            <select class="form-control" id="module_id" name="module_id" required readonly>
                                 <option selected>SELECT ONE </option>
                                 @foreach($modules as $option)
                                 <option value="{{ $option->id }}" {{ $option->id==$data->id?'selected':'' }}>{{ $option->module_name }}</option>
@@ -77,8 +77,11 @@
                         <div id="products" style="display:none">
                             <div class="form-group" >
                                 <label for="">PRODUCTS</label>
-                                <select name="products[]" multiple class="form-control" id="products-field" value="{{ $products }}">
+                                <select name="products[]" multiple class="form-control" id="products-field">
                                     <option value="select one"></option>
+                                    @foreach($moduleProducts as $product)
+                                    <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -129,20 +132,9 @@
         $('#module_id').select2({});
 
     })
-    function modulChange(id) {
-        console.log('id');
-        $('#products-field').select2({
-            ajax: {
-                url: '{{ url('/') }}/admin/module-product/'+id,
-                dataType: 'json',
-                processResults: function(data) {
-                    return {
-                        results: data.data
-                    };
-                },
-            }
-        });
-    }
+    $('#products-field').select2({});
+    var selectedProducts = <?= json_encode($products); ?>
+    $('#products-field').val(selectedProducts).change();
 
 </script>
 <!--end of mi-card-->
