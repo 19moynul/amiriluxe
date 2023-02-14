@@ -48,7 +48,7 @@ class BusinesscategoryController extends Controller
             $products = [];
         }
 
-        $moduleProducts = Item::where('module_id',$data->module_id)->first();
+        $moduleProducts = Item::where('module_id',$data->module_id)->get();
         return view('admin-views.businesscategory.edit', compact('data', 'modules','products','moduleProducts'));
     }
     public function view($id)
