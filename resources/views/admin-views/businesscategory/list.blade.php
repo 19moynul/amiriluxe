@@ -20,7 +20,10 @@
                         <td> {{ optional($item->module)->module_name}} </td>
                         <td> <?php if($item->type == '1'){ echo 'Slider'; }else if($item->type == '2'){ echo 'Category'; } ?>
                         </td>
-                        <td class="mi-action-button"><a href="{{ route('admin.business-category.edit',['id'=>$item->id]) }}">
+                        <td class="mi-action-button">
+                            <a href="{{ route('admin.business-category.view',['id'=>$item->id]) }}">
+                                <button class="butn info transparent"><i class="fa fa-eye"></i></button></a>
+                            <a href="{{ route('admin.business-category.edit',['id'=>$item->id]) }}">
                                 <button class="butn warning transparent"><i class="fa fa-edit"></i></button></a>
                                 <a
                                 onclick="return confirm('Are you sure to delete')"

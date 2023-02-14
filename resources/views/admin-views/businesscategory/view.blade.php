@@ -20,7 +20,7 @@
                 <tbody>
                     @foreach($catProducts as $catProduct)
                     <tr>
-                        <td>{{ $loop->index }}</td>
+                        <td>{{ $loop->index+1 }}</td>
                         <td>
                             <img class="avatar avatar-lg mr-3" src="{{asset('storage/app/public/product')}}/{{optional($catProduct->product)->image}}"
                                             onerror="this.src='{{asset('public/assets/admin/img/160x160/img2.jpg')}}'" alt="{{optional($catProduct->product)->name}} image">
@@ -31,7 +31,7 @@
                         <td>{{ optional($catProduct->product)->discount }} {{ optional($catProduct->product)->discount_type=='percent'?'%':'INR' }}</td>
                         <td><a
                                 onclick="return confirm('Are you sure to delete')"
-                                href="{{ route('admin.business-category.delete',['id'=>$catProduct->id]) }}"> <button
+                                href="{{ route('admin.business-category.delete-product',['id'=>$catProduct->id]) }}"> <button
                                     class="butn danger transparent"><i class="fa fa-trash"></i></button></a></td>
                     </tr>
                     @endforeach
