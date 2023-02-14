@@ -3,7 +3,7 @@
 @section('content')
 <div class="row ms-15 me-15">
     <div class="mi-card ">
-        <div class="mi-header info transparent"> LIST OF PRODUCTS : {{ $category->name_en }}</div>
+        <div class="mi-header info transparent"> LIST OF {{ $category->type==1? 'BANNER':'PRODUCTS'}} : {{ $category->name_en }}</div>
         <div class="mi-body">
             @if($category->type==2)
             <table class="mi-table table table-bordered table-striped">
@@ -24,7 +24,7 @@
                         <td>{{ $loop->index+1 }}</td>
                         <td>
                             <img class="avatar avatar-lg mr-3" src="{{asset('storage/app/public/product')}}/{{optional($catProduct->product)->image}}"
-                                            onerror="this.src='{{asset('public/assets/admin/img/160x160/img2.jpg')}}'" alt="{{optional($catProduct->product)->name}} image">
+                                            onerror="this.src='{{asset('public/assets/admin/img/160x160/img2.jpg')}}'" alt="{{optional($catProduct->product)->name}} image"width="300px" height="auto">
                                         </td>
                         <td>{{ optional($catProduct->product)->name }}</td>
                         <td>{{ optional($catProduct->product)->stock }}</td>

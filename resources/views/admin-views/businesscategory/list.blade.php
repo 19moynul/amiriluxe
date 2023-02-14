@@ -2,7 +2,7 @@
 @section('content')
 <div class="row ms-15 me-15">
     <div class="mi-card ">
-        <div class="mi-header info transparent"> LIST OF BUSINESSCATEGORYS </div>
+        <div class="mi-header info transparent"> LIST OF BUSINESS CATEGORIES </div>
         <div class="mi-body">
             <table class="mi-table table table-bordered table-striped">
                 <thead>

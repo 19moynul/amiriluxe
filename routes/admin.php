@@ -293,7 +293,7 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
         Route::get('business-category/view/{id}', [BusinesscategoryController::class, 'view'])->name('business-category.view');
         Route::get('business-category/edit/{id}', [BusinesscategoryController::class, 'edit'])->name('business-category.edit');
         Route::get('business-category/delete/{id}', [BusinesscategoryController::class, 'delete'])->name('business-category.delete');
-        Route::get('business-category/delete-product/{id}', [BusinesscategoryController::class, 'deleteProduct'])->name('business-category.delete-product');
+        Route::get('business-category/delete-product/{id}/{type}', [BusinesscategoryController::class, 'deleteProduct'])->name('business-category.delete-product');
 
         Route::get('order/generate-invoice/{id}', 'OrderController@generate_invoice')->name('order.generate-invoice');
         Route::get('order/print-invoice/{id}', 'OrderController@print_invoice')->name('order.print-invoice');
