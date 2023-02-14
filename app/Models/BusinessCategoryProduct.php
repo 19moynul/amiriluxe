@@ -13,6 +13,6 @@ class BusinessCategoryProduct extends Model
     public $timestamps=false;
 
     public function product(){
-        return $this->hasMany(Item::class,'id','product_id')->select('id','name','price','discount','discount_type');
+        return $this->hasMany(Item::class,'id','product_id')->select('id','name','price','discount','discount_type','image');
     }
 }
