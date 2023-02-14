@@ -19,7 +19,7 @@
                     <!--mi-card body started--> <input name="_token" type="hidden" value="{{ csrf_token() }}">
                     <div class="form-group ">
                         <label>TYPE <b class="text-danger">*</b> </label>
-                        <select class="form-control" name="type" id="type" required>
+                        <select class="form-control" id="type" name="type" id="type" required>
                             <option selected>SELECT ONE </option>
                             <option value="1">Slider</option>
                             <option value="2">Category</option>
@@ -113,7 +113,6 @@
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
-    $('#type').select2({});
     $(document).ready(function () {
         $('#type').change(function () {
             $('.all-fields').css('display', 'block');
