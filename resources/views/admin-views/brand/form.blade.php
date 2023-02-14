@@ -17,7 +17,7 @@
                         <div class="form-group"><label>NAME HINDI<i class="fas fa-hand-holding-seedling    "></i> </label><input type="text" placeholder="NAME HINDI"
                                 name="name_hi" id="name_hi" class="form-control"
                                 value="{{ isset($data)?$data->name_hi:old('name_hi') }}"> </div>
-                        <div class="form-group"><label>NAME MARATI </label><input type="text" placeholder="NAME MARATI"
+                        <div class="form-group"><label>NAME MARATHI </label><input type="text" placeholder="NAME MARATHI"
                                 name="name_mr" id="name_mr" class="form-control"
                                 value="{{ isset($data)?$data->name_mr:old('name_mr') }}"> </div>
                         <div class="form-group position-relative"><label>IMAGE <b class="text-danger">*</b> </label>

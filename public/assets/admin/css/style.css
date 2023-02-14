@@ -7413,7 +7413,7 @@ ul.delivery--information-single li:not(:last-child) {
   border-bottom: 1px solid;
   border-top-left-radius: .25rem;
   border-top-right-radius: .25rem;
-  font-family: Open Sans, sans-serif;
+  font-family: 'Inter';
   font-size: .9375rem;
   font-weight: 800;
   line-height: 1.5rem;
