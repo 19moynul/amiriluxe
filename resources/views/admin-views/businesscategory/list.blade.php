@@ -18,7 +18,7 @@
                 </thead>
                 <tbody id="tablecontents"> <?php $i=0; ?>
                     @foreach($data as $item)
-                    <tr class="row1" data-id="{{ $item->id }}>
+                    <tr class="row1" data-id="{{ $item->id }}">
                         <td>{{ ++$i }}</td>
                         <td> {{ $item->name_en}} </td>
                         <td> {{ optional($item->module)->module_name}} </td>
