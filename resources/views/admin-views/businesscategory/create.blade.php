@@ -15,6 +15,7 @@
             <!--end of mi card header-->
             <form action="{{ route('admin.business-category.store') }}" method="POST" enctype="multipart/form-data">
                 <div class="mi-body">
+                    @include('layouts.admin.toaster')
                     <!--mi-card body started--> <input name="_token" type="hidden" value="{{ csrf_token() }}">
                     <div class="form-group ">
                         <label>TYPE <b class="text-danger">*</b> </label>
