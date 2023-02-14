@@ -43,4 +43,8 @@ class Businesscategory extends Model
     {
         return $this->belongsTo(Module::class, 'module_id', 'id');
     }
+    public function products()
+    {
+        return $this->hasMany(Item::class, 'id', 'product_id');
+    }
 }
