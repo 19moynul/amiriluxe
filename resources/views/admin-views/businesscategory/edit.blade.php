@@ -69,7 +69,7 @@
                             <select class="form-control" id="module_id" name="module_id" required readonly>
                                 <option selected>SELECT ONE </option>
                                 @foreach($modules as $option)
-                                <option value="{{ $option->id }}" {{ $option->id==$data->id?'selected':'' }}>{{ $option->module_name }}</option>
+                                <option value="{{ $option->id }}" {{ $option->id==$data->module_id?'selected':'' }}>{{ $option->module_name }}</option>
                                 @endforeach
                             </select>
                         </div>
