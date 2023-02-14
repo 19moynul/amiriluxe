@@ -19,7 +19,7 @@
                     <!--mi-card body started--> <input name="_token" type="hidden" value="{{ csrf_token() }}">
                     <div class="form-group ">
                         <label>TYPE (CAN'T CHANGE)<b class="text-danger">*</b> </label>
-                        <select class="form-control" id="type" name="type" id="type" required disabled>
+                        <select class="form-control" id="type" name="type" id="type" required>
                             <option selected>SELECT ONE </option>
                             <option value="1" {{ $data->type==1?'selected':'' }} >Slider</option>
                             <option value="2" {{ $data->type==2?'selected':'' }}>Category</option>
@@ -66,7 +66,7 @@
                         </div>
                         <div class="form-group ">
                             <label>SELECT MODULE (CAN'T CHANGE) <b class="text-danger">*</b> </label>
-                            <select class="form-control" id="module_id" name="module_id" required disabled>
+                            <select class="form-control" id="module_id" name="module_id" required>
                                 <option selected>SELECT ONE </option>
                                 @foreach($modules as $option)
                                 <option value="{{ $option->id }}" {{ $option->id==$data->module_id?'selected':'' }}>{{ $option->module_name }}</option>
