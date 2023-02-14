@@ -88,9 +88,9 @@ class BusinesscategoryController extends Controller
                 }
                 $products = [];
                 foreach($request->products as $product){
-                    $products[]=['category_id'=>$bCategory->id,'product_id'=>$product->id];
+                    $products[]=['category_id'=>$bCategory->id,'product_id'=>$product];
                 }
-                BusinessCategoryProduct::create($products);
+                BusinessCategoryProduct::insert($products);
             }
 
             DB::commit();
@@ -98,6 +98,7 @@ class BusinesscategoryController extends Controller
                 ->back()
                 ->with('success', 'business_category has been ' . $text . ' successfully');
         } catch (\Exception $e) {
+            return $e;
             DB::rollback();
             Log::error('Businesscategory -> store : ' . $e->getMessage());
             return redirect()

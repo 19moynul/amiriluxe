@@ -9,4 +9,6 @@ class BusinessCategoryProduct extends Model
 {
     use HasFactory;
     protected $table = 'tbl_business_category_to_product';
+    public $guarded = [];
+    public $timestamps=false;
 }

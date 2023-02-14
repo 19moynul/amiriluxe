@@ -9,4 +9,6 @@ class BusinessBanner extends Model
 {
     use HasFactory;
     protected $table = 'tbl_business_banners';
+    public $guarded = [];
+    public $timestamps=false;
 }
