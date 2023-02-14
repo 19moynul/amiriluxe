@@ -8020,3 +8020,8 @@ a {
 .ms-15{
     margin-left:15px !important;
 }
+
+
+.tab-pane{
+    padding: 10px 0px;
+}
