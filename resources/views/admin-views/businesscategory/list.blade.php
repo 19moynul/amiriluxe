@@ -15,7 +15,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody> <?php $i=0; ?> @foreach($data as $item) <tr>
+                <tbody> <?php $i=0; ?> @foreach($data as $item) <tr class="tablecontents">
                         <td>{{ ++$i }}</td>
                         <td> {{ $item->name_en}} </td>
                         <td> {{ optional($item->module)->module_name}} </td>
