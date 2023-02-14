@@ -9,6 +9,7 @@
                 <thead>
                     <tr>
                         <th>#</th>
+                        <th>IMAGE</th>
                         <th>PRODUCT NAME</th>
                         <th>STOCK</th>
                         <th>PRICE</th>
@@ -39,3 +40,4 @@
         </div>
     </div>
 </div>
+@endsection
