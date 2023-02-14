@@ -14,6 +14,7 @@ use App\Models\Item;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Log;
 use DB;
+use Stripe\Product;
 
 class BusinesscategoryController extends Controller
 {
@@ -55,8 +56,13 @@ class BusinesscategoryController extends Controller
     public function view($id)
     {
         $category = BusinessCategory::where('id',$id)->first();
-        $catProducts = BusinessCategoryProduct::with('product')->where('category_id',$id)->get();
-        return view('admin-views.businesscategory.view', compact('catProducts','category'));
+        if($category->type == 2){
+            $data = BusinessCategoryProduct::with('product')->where('category_id',$id)->get();
+        }else{
+             $data = BusinessBanner::where('category_id',$id)->get();
+        }
+            return view('admin-views.businesscategory.view', compact('data','category'));
+
     }
 
     public function store(BusinesscategoryRequest $request)
@@ -77,12 +83,13 @@ class BusinesscategoryController extends Controller
                 if($request->hasFile('images')){
                     $images = [];
                     if ($request->has('id')) {
-                        $allImages = BusinessBanner::where(['category_id'=>$request->id])->pluck('image');
+                        $allImages = BusinessBanner::where(['category_id'=>$request->id])->get();
                         foreach($allImages as $image){
-                            $path = url('/images/brand/').$image;
+                            $path = url('/images/brand/').$image->image;
                             if(file_exists($path)){
                                 unlink($path);
                             }
+                            $image->delete();
                         }
                     }
                     foreach($request->file('images') as $file){
@@ -119,9 +126,44 @@ class BusinesscategoryController extends Controller
 
     public function delete($id)
     {
-        Businesscategory::find($id)->delete();
-        return redirect()
-            ->back()
-            ->with('success', 'Data Deleted Successfully');
+        $bCategory = Businesscategory::find($id)->first();
+        if($bCategory){
+            if($bCategory->type==2){
+                BusinessCategoryProduct::where('category_id',$bCategory->id)->delete();
+                $bCategory->delete();
+            }else{
+                $allImages = BusinessBanner::where(['category_id'=>$bCategory->id])->get();
+                foreach($allImages as $image){
+                    $path = url('/images/brand/').$image->image;
+                    if(file_exists($path)){
+                        unlink($path);
+                    }
+                    $image->delete();
+                }
+            }
+        }
+        Toastr::success('Data deleted successfully');
+        return redirect()->back();
+    }
+
+
+    public function deleteProduct($id,$type){
+        if($type == 2){
+            $data = BusinessCategoryProduct::where('id',$id)->first();
+            if($data){
+                $data->delete();
+            }
+        }else{
+            $image = BusinessBanner::where(['id'=>$id])->first();
+            if($image){
+                $path = url('/images/brand/').$image->image;
+                if(file_exists($path)){
+                    unlink($path);
+                }
+                $image->delete();
+            }
+        }
+        Toastr::success('Data deleted successfully');
+        return redirect()->back();
     }
 }
