@@ -96,7 +96,7 @@ class BusinesscategoryController extends Controller
             DB::commit();
             return redirect()
                 ->back()
-                ->with('success', 'business_category has been ' . $text . ' successfully');
+                ->with('success', 'Data saved successfully');
         } catch (\Exception $e) {
             return $e;
             DB::rollback();

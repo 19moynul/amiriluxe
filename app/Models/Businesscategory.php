@@ -41,6 +41,6 @@ class Businesscategory extends Model
     }
     public function module()
     {
-        return $this->belongsTo(modules::class, 'module_id', 'id');
+        return $this->belongsTo(Module::class, 'module_id', 'id');
     }
 }
