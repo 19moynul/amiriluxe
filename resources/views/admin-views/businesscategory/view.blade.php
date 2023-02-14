@@ -20,8 +20,10 @@
                     @foreach($catProducts as $catProduct)
                     <tr>
                         <td>{{ $loop->index }}</td>
-                        <td> <img class="avatar avatar-lg mr-3" src="{{asset('storage/app/public/product')}}/{{optional($catProduct->product)->image}}"
-                                            onerror="this.src='{{asset('public/assets/admin/img/160x160/img2.jpg')}}'" alt="{{optional($catProduct->product)->name}} image"></td>
+                        <td>
+                            <img class="avatar avatar-lg mr-3" src="{{asset('storage/app/public/product')}}/{{optional($catProduct->product)->image}}"
+                                            onerror="this.src='{{asset('public/assets/admin/img/160x160/img2.jpg')}}'" alt="{{optional($catProduct->product)->name}} image">
+                                        </td>
                         <td>{{ optional($catProduct->product)->name }}</td>
                         <td>{{ optional($catProduct->product)->stock }}</td>
                         <td>{{ optional($catProduct->product)->price }} INR</td>
