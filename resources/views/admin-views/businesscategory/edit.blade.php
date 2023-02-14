@@ -19,7 +19,7 @@
                     <!--mi-card body started--> <input name="_token" type="hidden" value="{{ csrf_token() }}">
                     <div class="form-group ">
                         <label>TYPE <b class="text-danger">*</b> </label>
-                        <select class="form-control" id="type" name="type" id="type" required readonly>
+                        <select class="form-control" id="type" name="type" id="type" required disabled>
                             <option selected>SELECT ONE </option>
                             <option value="1" {{ $data->type==1?'selected':'' }} >Slider</option>
                             <option value="2" {{ $data->type==2?'selected':'' }}>Category</option>
@@ -66,7 +66,7 @@
                         </div>
                         <div class="form-group ">
                             <label>SELECT MODULE <b class="text-danger">*</b> </label>
-                            <select class="form-control" id="module_id" name="module_id" required readonly>
+                            <select class="form-control" id="module_id" name="module_id" required disabled>
                                 <option selected>SELECT ONE </option>
                                 @foreach($modules as $option)
                                 <option value="{{ $option->id }}" {{ $option->id==$data->module_id?'selected':'' }}>{{ $option->module_name }}</option>
@@ -119,8 +119,7 @@
         $('#type').change(function () {
             $('.all-fields').css('display', 'block');
             if ($(this).val() == 1) {
-                $('#images').css('display', 'block');
-                $('#products').css('display', 'none');
+
 
 
             } else {
@@ -129,11 +128,20 @@
             }
         })
 
+
+        var type = <?= json_encode($data->type) ?>;
+
+        if(type==1){
+            $('#images').css('display', 'block');
+        }elseif(type==2){
+            $('#products').css('display', 'block');
+        }
+
         $('#module_id').select2({});
 
     })
     $('#products-field').select2({});
-    var selectedProducts = <?= json_encode($products); ?>
+    var selectedProducts = <?= json_encode($products); ?>;
     $('#products-field').val(selectedProducts).change();
 
 </script>
