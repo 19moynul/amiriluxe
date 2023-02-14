@@ -21,7 +21,7 @@
                         <label>TYPE (CAN'T CHANGE)<b class="text-danger">*</b> </label>
                         <select class="form-control" id="type" name="type" id="type" required>
                             <option selected>SELECT ONE </option>
-                            <option value="1" {{ $data->type==1?'selected':'' }} >Slider</option>
+                            <option value="1" {{ $data->type==1?'selected':'' }} >Banner</option>
                             <option value="2" {{ $data->type==2?'selected':'' }}>Category</option>
                         </select> </div>
 

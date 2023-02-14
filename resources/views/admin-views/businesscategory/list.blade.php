@@ -1,10 +1,11 @@
 @extends('layouts.admin.app')
 @section('content')
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css">
 <div class="row ms-15 me-15">
     <div class="mi-card ">
         <div class="mi-header info transparent"> LIST OF BUSINESS CATEGORIES </div>
         <div class="mi-body">
-            <table class="mi-table table table-bordered table-striped">
+            <table class="mi-table table table-bordered table-striped" id="bctable">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -37,4 +38,31 @@
         </div>
     </div>
 </div>
+
+<script
+  src="https://code.jquery.com/jquery-3.6.3.min.js"
+  integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+  crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+<script>
+    $(function () {
+        $('#bctable').DataTable();
+
+        $( "#tablecontents" ).sortable({
+            items: "tr",
+            cursor: 'move',
+            opacity: 0.6,
+            update: function() {
+                sendOrderToServer();
+            }
+        });
+
+        function sendOrderToServer() {
+            console.log('call api');
+        }
+    })
+
+
+
+</script>
 @endsection

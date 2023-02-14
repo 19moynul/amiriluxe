@@ -21,7 +21,7 @@
                         <label>TYPE <b class="text-danger">*</b> </label>
                         <select class="form-control" id="type" name="type" id="type" required>
                             <option selected>SELECT ONE </option>
-                            <option value="1">Slider</option>
+                            <option value="1">Banner</option>
                             <option value="2">Category</option>
                         </select> </div>
 
