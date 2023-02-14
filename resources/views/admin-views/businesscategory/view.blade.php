@@ -17,7 +17,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($catPoducts as $catProduct)
+                    @foreach($catProducts as $catProduct)
                     <tr>
                         <td>{{ $loop->index }}</td>
                         <td> <img class="avatar avatar-lg mr-3" src="{{asset('storage/app/public/product')}}/{{$item->image}}"
