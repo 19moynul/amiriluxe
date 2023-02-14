@@ -468,7 +468,7 @@
                         </li>
                     </ul>
                 </li>
-                    <li class="navbar-vertical-aside-has-menu {{ Request::is('admin/brand*') ? 'active' : '' }}">
+                <li class="navbar-vertical-aside-has-menu {{ Request::is('admin/brand*') ? 'active' : '' }}">
                         <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:" title="{{ translate('Brands') }}">
                             <i class="tio-category nav-icon"></i>
                             <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{ translate('Brands') }}</span>
@@ -487,6 +487,26 @@
                                 </a>
                             </li>
 
+                    </ul>
+                </li>
+                <li class="navbar-vertical-aside-has-menu {{ Request::is('admin/business-category/*') ? 'active' : '' }}">
+                        <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:" title="{{ translate('Business Categories') }}">
+                            <i class="tio-category nav-icon"></i>
+                            <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{ translate('Business Categories') }}</span>
+                        </a>
+                        <ul class="js-navbar-vertical-aside-submenu nav nav-sub"  style="display:{{ Request::is('admin/business-category/*') ? 'block' : 'none' }}">
+                            <li class="nav-item {{ Request::is('admin/business-category/create') ? 'active' : '' }}">
+                                <a class="nav-link " href="{{ route('admin.business-category.create') }}" title="{{ translate('Create Business Category') }}">
+                                    <span class="tio-circle nav-indicator-icon"></span>
+                                    <span class="text-truncate">{{ translate('Create Business Category') }}</span>
+                                </a>
+                            </li>
+                            <li class="nav-item {{ Request::is('admin/business-category/list') || Request::is('admin/business-category/edit/*') ? 'active' : '' }}">
+                                <a class="nav-link " href="{{ route('admin.business-category.list') }}" title="{{ translate('Create Brand') }}">
+                                    <span class="tio-circle nav-indicator-icon"></span>
+                                    <span class="text-truncate">{{ translate('Business Category List') }}</span>
+                                </a>
+                            </li>
                     </ul>
                 </li>
                 @endif
