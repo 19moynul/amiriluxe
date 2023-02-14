@@ -25,7 +25,7 @@
                             <option value="2" {{ $data->type==2?'selected':'' }}>Category</option>
                         </select> </div>
 
-                    <div class="form-group all-fields" style="display:none">
+                    <div class="form-group all-fields">
                         <nav class="mi-tab">
                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                 <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home"
