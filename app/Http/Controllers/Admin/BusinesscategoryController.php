@@ -54,8 +54,8 @@ class BusinesscategoryController extends Controller
     }
     public function view($id)
     {
-        $data = Businesscategory::where('id', $id)->first();
-        return view('admin-views.businesscategory.view', compact('data'));
+        $catProducts = BusinessCategoryProduct::with('product')->where('category_id',$id)->get();
+        return view('admin-views.businesscategory.view', compact('catProducts'));
     }
 
     public function store(BusinesscategoryRequest $request)

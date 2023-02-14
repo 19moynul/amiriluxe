@@ -21,7 +21,8 @@
                         <td> <?php if($item->type == '1'){ echo 'Slider'; }else if($item->type == '2'){ echo 'Category'; } ?>
                         </td>
                         <td class="mi-action-button"><a href="{{ route('admin.business-category.edit',['id'=>$item->id]) }}">
-                                <button class="butn warning transparent"><i class="fa fa-edit"></i></button></a><a
+                                <button class="butn warning transparent"><i class="fa fa-edit"></i></button></a>
+                                <a
                                 onclick="return confirm('Are you sure to delete')"
                                 href="{{ route('admin.business-category.delete',['id'=>$item->id]) }}"> <button
                                     class="butn danger transparent"><i class="fa fa-trash"></i></button></a> </td>
