@@ -290,7 +290,7 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
         Route::get('business-category/create', [BusinesscategoryController::class, 'create'])->name('business-category.create');
         Route::post('business-category/store', [BusinesscategoryController::class, 'store'])->name('business-category.store');
         Route::get('business-category/list', [BusinesscategoryController::class, 'list'])->name('business-category.list');
-        Route::get('business-category/view', [BusinesscategoryController::class, 'list'])->name('business-category.view');
+        Route::get('business-category/view/{id}', [BusinesscategoryController::class, 'list'])->name('business-category.view');
         Route::get('business-category/edit/{id}', [BusinesscategoryController::class, 'edit'])->name('business-category.edit');
         Route::get('business-category/delete/{id}', [BusinesscategoryController::class, 'delete'])->name('business-category.delete');
 
