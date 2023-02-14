@@ -129,11 +129,11 @@
         })
 
 
-        var type = <?= json_encode($data->type) ?>;
+        var type = <?= $data->type ?>;
 
         if(type==1){
             $('#images').css('display', 'block');
-        }elseif(type==2){
+        }else{
             $('#products').css('display', 'block');
         }
 
