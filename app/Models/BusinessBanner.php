@@ -11,4 +11,10 @@ class BusinessBanner extends Model
     protected $table = 'tbl_business_banners';
     public $guarded = [];
     public $timestamps=false;
+
+    public $appends = ['image_url'];
+
+    public function getImageUrlAttribute(){
+        return url('images').$this->image;
+    }
 }

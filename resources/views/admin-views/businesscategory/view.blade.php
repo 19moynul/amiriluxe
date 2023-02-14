@@ -48,16 +48,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($data as $catProduct)
+                    @foreach($data as $banner)
                     <tr>
                         <td>{{ $loop->index+1 }}</td>
                         <td>
-                            <img class="avatar avatar-lg mr-3" src="{{asset('images/business_category')}}/{{$catProduct->image}}"
-                                            onerror="this.src='{{asset('public/assets/admin/img/160x160/img2.jpg')}}'" alt="{{ $catProduct->image }} image">
+                            <img class="avatar avatar-lg mr-3" src="{{ $banner->image_url }}"
+                                            onerror="this.src='{{asset('public/assets/admin/img/160x160/img2.jpg')}}'" alt="{{ $banner->image }} image">
                         </td>
                         <td><a
                                 onclick="return confirm('Are you sure to delete')"
-                                href="{{ route('admin.business-category.delete-product',['id'=>$catProduct->id,'type'=>$category->type]) }}"> <button
+                                href="{{ route('admin.business-category.delete-product',['id'=>$banner->id,'type'=>$category->type]) }}"> <button
                                     class="butn danger transparent"><i class="fa fa-trash"></i></button></a></td>
                     </tr>
                     @endforeach
