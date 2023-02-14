@@ -17,8 +17,8 @@
                 <tbody> <?php $i=0; ?> @foreach($data as $item) <tr>
                         <td>{{ ++$i }}</td>
                         <td> {{ $item->name_en}} </td>
-                        <td> {{ $item->module->module_name}} </td>
-                        <td> <?php if($item->type == '1'){ echo 'Slider'; }else if($item->type == '2'){ echo 'Category' } ?>
+                        <td> {{ optional($item->module)->module_name}} </td>
+                        <td> <?php if($item->type == '1'){ echo 'Slider'; }else if($item->type == '2'){ echo 'Category'; } ?>
                         </td>
                         <td class="mi-action-button"><a href="{{ route('admin.business-category.edit',['id'=>$item->id]) }}">
                                 <button class="butn warning transparent"><i class="fa fa-edit"></i></button></a><a
