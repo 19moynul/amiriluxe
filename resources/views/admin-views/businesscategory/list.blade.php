@@ -57,10 +57,10 @@
         });
 
         function sendOrderToServer() {
-          var order = [];
+          var category = [];
           var token = $('meta[name="csrf-token"]').attr('content');
           $('tr.row1').each(function(index,element) {
-            order.push({
+            category.push({
               id: $(this).attr('data-id'),
               position: index+1
             });
