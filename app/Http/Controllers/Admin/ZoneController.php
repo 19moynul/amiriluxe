@@ -103,6 +103,7 @@ class ZoneController extends Controller
         $polygon[] = new Point($lastcord[0], $lastcord[1]);
         $zone=Zone::findOrFail($id);
         $zone->name = $request->name;
+        $zone->subtitle = $request->subtitle;
         $zone->coordinates = new Polygon([new LineString($polygon)]);
         $zone->store_wise_topic =  'zone_'.$id.'_store';
         $zone->customer_wise_topic = 'zone_'.$id.'_customer';
