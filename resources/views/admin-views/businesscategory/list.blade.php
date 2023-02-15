@@ -69,9 +69,9 @@
           $.ajax({
             type: "POST",
             dataType: "json",
-            url: "{{ url('business-category.sortable') }}",
-                data: {
-              order: order,
+            url: "/admin/business-category/sort",
+            data: {
+              category: category,
               _token: token
             },
             success: function(response) {

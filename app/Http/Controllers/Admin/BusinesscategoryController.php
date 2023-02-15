@@ -30,9 +30,8 @@ class BusinesscategoryController extends Controller
     }
     public function list()
     {
-        $sort = request('sort') ? request('sort') : 'DESC';
-        $limit = request('limit') ? request('limit') : defaultLimit();
-        $data = Businesscategory::filter()->orderBy('id', $sort);
+        $limit = request('limit') ? request('limit') : '';
+        $data = Businesscategory::filter()->orderBy('sort', 'asc');
         if ($limit) {
             $data = $data->paginate($limit);
         } else {
@@ -165,5 +164,19 @@ class BusinesscategoryController extends Controller
         }
         Toastr::success('Data deleted successfully');
         return redirect()->back();
+    }
+
+    public function sort(Request $request){
+        $businessCategory = Businesscategory::all();
+
+        foreach ($businessCategory as $bcategory) {
+            foreach ($request->category as $category) {
+                if ($category['id'] == $bcategory->id) {
+                    $bcategory->update(['sort' => $category['position']]);
+                }
+            }
+        }
+
+        return response('Update Successfully.', 200);
     }
 }
