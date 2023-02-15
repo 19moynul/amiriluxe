@@ -45,7 +45,7 @@ class Businesscategory extends Model
     }
     public function products()
     {
-        return $this->hasMany(BusinessCategoryProduct::class, 'category_id', 'id');
+        return $this->hasMany(BusinessCategoryProduct::class, 'category_id', 'id')->take(15);
     }
 
     public function banners(){

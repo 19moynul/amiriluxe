@@ -13,7 +13,7 @@ class BrandController extends Controller
 {
     public function list(){
         $lang = request('lang')?request('lang'):'en';
-        $data  = Brand::select('id','name_'.$lang.' as name','image')->where('status',1)->orderBy('id','desc')->limit(10)->get();
+        $data  = Brand::select('id','name_'.$lang.' as name','image')->where('status',1)->orderBy('id','desc')->limit(15)->get();
         return response()->json(['data'=>$data],200);
     }
 
