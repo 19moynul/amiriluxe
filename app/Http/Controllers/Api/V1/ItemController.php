@@ -163,7 +163,7 @@ class ItemController extends Controller
         try {
             $item = ProductLogic::get_product($id);
             $item = Helpers::product_data_formatting($item, false, false, app()->getLocale());
-            $relatedProducts = Item::where('subcategory_id',$item->subcategory_id)->orWhere('brand_id',$item->brand_id)->random()->get()->limit(6);
+            $relatedProducts = Item::where('subcategory_id',$item->subcategory_id)->orWhere('brand_id',$item->brand_id)->random(6);
 
             $relatedProductsData=[];
             foreach($relatedProducts as $product){
