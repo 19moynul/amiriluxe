@@ -24,7 +24,7 @@ class BrandController extends Controller
     public function list()
     {
         $sort = request('sort') ? request('sort') : 'DESC';
-        $limit = request('limit') ? request('limit') : defaultLimit();
+        $limit = request('limit') ? request('limit') : null;
         $data = Brand::filter()->orderBy('id', $sort);
         if ($limit) {
             $data = $data->paginate($limit);
