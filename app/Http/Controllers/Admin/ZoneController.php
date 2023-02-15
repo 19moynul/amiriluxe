@@ -45,6 +45,7 @@ class ZoneController extends Controller
         $polygon[] = new Point($lastcord[0], $lastcord[1]);
         $zone = new Zone();
         $zone->name = $request->name;
+        $zone->subtitle = $request->subtitle;
         $zone->coordinates = new Polygon([new LineString($polygon)]);
         $zone->store_wise_topic =  'zone_'.$zone_id.'_store';
         $zone->customer_wise_topic = 'zone_'.$zone_id.'_customer';

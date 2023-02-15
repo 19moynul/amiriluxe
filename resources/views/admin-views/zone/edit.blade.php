@@ -60,6 +60,11 @@
                                     for="exampleFormControlInput1">{{translate('messages.name')}}</label>
                             <input type="text" name="name" id="name" class="form-control" placeholder="{{translate('messages.new_zone')}}" value="{{$zone->name}}" required>
                         </div>
+                        <div class="form-group mb-3">
+                            <label class="input-label"
+                                for="exampleFormControlInput1">{{translate('Subtitle')}}</label>
+                            <input type="text" name="subtitle" id="name" class="form-control" placeholder="{{translate('Subtitle')}}" value="{{$zone->subtitle}}" required>
+                        </div>
                         <div class="d-flex flex-wrap select--all-checkes">
                             <h5 class="input-label m-0 text-capitalize">{{translate('messages.Payment Method')}} </h5>
                         </div>

@@ -61,6 +61,11 @@
                                         for="exampleFormControlInput1">{{translate('messages.name')}}</label>
                                     <input type="text" name="name" id="name" class="form-control" placeholder="{{translate('messages.new_zone')}}" value="{{old('name')}}" required>
                                 </div>
+                                <div class="form-group mb-3">
+                                    <label class="input-label"
+                                        for="exampleFormControlInput1">{{translate('Subtitle')}}</label>
+                                    <input type="text" name="subtitle" id="name" class="form-control" placeholder="{{translate('Subtitle')}}" value="{{old('subtitle')}}" required>
+                                </div>
                                 <div class="d-flex flex-wrap select--all-checkes">
                                     <h5 class="input-label m-0 text-capitalize">{{translate('messages.Payment Method')}} </h5>
                                 </div>
@@ -200,6 +205,7 @@
                                 <th class="border-0">{{ translate('messages.SL') }}</th>
                                 <th class="border-0">{{translate('messages.id')}}</th>
                                 <th class="border-0" >{{translate('messages.name')}}</th>
+                                <th class="border-0" >{{translate('Subtitle')}}</th>
                                 <th class="border-0" >{{translate('messages.stores')}}</th>
                                 <th class="border-0" >{{translate('messages.deliverymen')}}</th>
                                 <th class="border-0" >{{translate('messages.status')}}</th>
@@ -219,6 +225,7 @@
                                         {{$zone['name']}}
                                     </span>
                                     </td>
+                                    <td>{{$zone->subtitle}}</td>
                                     <td>{{$zone->stores_count}}</td>
                                     <td>{{$zone->deliverymen_count}}</td>
                                     <td>
