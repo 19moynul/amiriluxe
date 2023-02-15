@@ -68,7 +68,8 @@ class BusinesscategoryController extends Controller
     {
         DB::beginTransaction();
         try {
-            $data = ['name_en' => $request->name_en, 'name_hi' => $request->name_hi, 'name_mr' => $request->name_mr, 'module_id' => $request->module_id, 'type' => $request->type, 'sort' => $request->sort, 'status' => $request->status];
+            $sortValue = Businesscategory::max('sort')+1;
+            $data = ['name_en' => $request->name_en, 'name_hi' => $request->name_hi, 'name_mr' => $request->name_mr, 'module_id' => $request->module_id, 'type' => $request->type, 'sort' => $sortValue, 'status' => $request->status];
 
             if ($request->has('id')) {
                 $bCategory = Businesscategory::where('id', $request->id)->update($data);
