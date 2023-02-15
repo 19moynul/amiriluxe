@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\BrandController;
+use App\Http\Controllers\Api\V1\BusinessCategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -191,6 +192,11 @@ Route::group(['namespace' => 'Api\V1', 'middleware'=>'localization'], function (
         Route::get('/list',[BrandController::class,'list']);
         Route::get('/list/all',[BrandController::class,'list']);
         Route::get('/products/{brand_id}',[BrandController::class,'brandProducts']);
+    });
+
+    Route::group(['prefix' => 'business-catgeory'], function () {
+        Route::get('/',[BusinessCategoryController::class,'list']);
+        Route::get('/products/{category_id}',[BusinessCategoryController::class,'productList']);
     });
 
     Route::group(['middleware'=>['module-check']], function(){
