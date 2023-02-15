@@ -168,7 +168,7 @@ class ItemController extends Controller
             $relatedProductsData=[];
             foreach($relatedProducts as $product){
                 $discount_price = $product->discount_type=='percent'?$product->discount/100*$product->price:$product->discount;
-                $data[]=[
+                $relatedProductsData[]=[
                     'id'=>$product->id,
                     'name'=>$product->name,
                     'image'=>$product->image_url,
@@ -183,6 +183,7 @@ class ItemController extends Controller
 
             return response()->json(['item'=>$item,'related_products'=>$relatedProductsData], 200);
         } catch (\Exception $e) {
+            return $e;
             return response()->json([
                 'errors' => ['code' => 'product-001', 'message' => translate('messages.not_found')]
             ], 404);
