@@ -294,6 +294,7 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
         Route::get('business-category/edit/{id}', [BusinesscategoryController::class, 'edit'])->name('business-category.edit');
         Route::get('business-category/delete/{id}', [BusinesscategoryController::class, 'delete'])->name('business-category.delete');
         Route::get('business-category/delete-product/{id}/{type}', [BusinesscategoryController::class, 'deleteProduct'])->name('business-category.delete-product');
+        Route::post('business-category/sort', [BusinesscategoryController::class, 'sort'])->name('business-category.sortable');
 
         Route::get('order/generate-invoice/{id}', 'OrderController@generate_invoice')->name('order.generate-invoice');
         Route::get('order/print-invoice/{id}', 'OrderController@print_invoice')->name('order.print-invoice');

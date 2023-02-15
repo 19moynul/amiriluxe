@@ -1,8 +1,6 @@
 @extends('layouts.admin.app')
 @section('content')
-{{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.css"/> --}}
- {{-- <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"> --}}
-    {{-- <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/> --}}
+<link rel="stylesheet" href="//cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css">
 <div class="row ms-15 me-15">
     <div class="mi-card ">
         <div class="mi-header info transparent"> LIST OF BUSINESS CATEGORIES </div>
@@ -43,16 +41,11 @@
     </div>
 </div>
 
-{{-- <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script
-  src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
-  integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
-  crossorigin="anonymous"></script> --}}
-    {{-- <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.js"></script> --}}
+<script src="//cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
 <script>
     jQuery.noConflict();
     jQuery(document).ready(function($) {
-        // $('#bctable').DataTable();
+        $('#bctable').DataTable();
 
         $("#tablecontents").sortable({
             items: "tr",
@@ -64,7 +57,31 @@
         });
 
         function sendOrderToServer() {
-            console.log('call api');
+          var order = [];
+          var token = $('meta[name="csrf-token"]').attr('content');
+          $('tr.row1').each(function(index,element) {
+            order.push({
+              id: $(this).attr('data-id'),
+              position: index+1
+            });
+          });
+
+          $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "{{ url('business-category.sortable') }}",
+                data: {
+              order: order,
+              _token: token
+            },
+            success: function(response) {
+                if (response.status == "success") {
+                  console.log(response);
+                } else {
+                  console.log(response);
+                }
+            }
+          });
         }
     });
 
