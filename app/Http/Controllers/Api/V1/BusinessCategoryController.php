@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Models\Businesscategory;
+use App\Models\BusinessCategoryProduct;
 use Illuminate\Http\Request;
 
 class BusinessCategoryController extends Controller
 {
     public function list(){
         $lang = request('lang')?request('lang'):'en';
-        $categories = Businesscategory::select('*','name_'.$lang.' as name')->with('products.product')->where('status',1)->get();
+        $categories = Businesscategory::select('*','name_'.$lang.' as name')->with('products.product')->where('status',1)->orderBy('sort','asc')->get();
         $categoryProduct = [];
         foreach($categories as $category){
 
@@ -19,17 +20,22 @@ class BusinessCategoryController extends Controller
                 $childs = [];
 
                 foreach($category->products as $catProduct){
-                    $discount_price = optional($catProduct->product)->discount_type=='percent'?optional($catProduct->product)->discount/100*optional($catProduct->product)->price:optional($catProduct->product)->discount;
+                    $discount_type = optional($catProduct->product)->discount_type;
+                    $discount = optional($catProduct->product)->discount;
+                    $discount_price = $discount_type=='percent'?$discount/100*optional($catProduct->product)->price:$discount;
                     $childs[] = [
                         'id'=>optional($catProduct->product)->id,
                         'name'=>optional($catProduct->product)->name,
-                        'unit'=>optional($catProduct->product)->unit->unit,
+                        'unit'=>optional($catProduct->product->unit)->unit,
                         'image'=>optional($catProduct->product)->image_url,
                         'regular_price'=>optional($catProduct->product)->price+$discount_price,
                         'final_price'=>optional($catProduct->product)->price,
-                        'discount'=>$discount_price,
+                        'discount'=>$discount_type == 'percent'?$discount_price.'%':$discount_price,
                     ];
                 }
+            }else{
+                $childs=[];
+                $childs = $category->banners;
             }
 
              $categoryProduct[]=[
@@ -42,7 +48,31 @@ class BusinessCategoryController extends Controller
 
             // $data->childs = $prod->produc
         }
-        return $categoryProduct;
+
+        return response()->json(['data'=>$categoryProduct]);
+    }
+
+
+    public function categoryProducts($category_id){
+        $categoryProducts = BusinessCategoryProduct::with('product')->where('category_id',$category_id)->orderBy('id','desc')->get();
+        $data = [];
+        foreach($categoryProducts as $catProduct){
+            $discount_type = optional($catProduct->product)->discount_type;
+            $discount = optional($catProduct->product)->discount;
+            $discount_price = $discount_type=='percent'?$discount/100*optional($catProduct->product)->price:$discount;
+            $data[] = [
+                'id'=>optional($catProduct->product)->id,
+                'name'=>optional($catProduct->product)->name,
+                'unit'=>optional($catProduct->product->unit)->unit,
+                'image'=>optional($catProduct->product)->image_url,
+                'regular_price'=>optional($catProduct->product)->price+$discount_price,
+                'final_price'=>optional($catProduct->product)->price,
+                'discount'=>$discount_type == 'percent'?$discount_price.'%':$discount_price,
+            ];
+        }
+
+
+        return response()->json(['data'=>$data]);
     }
 
 

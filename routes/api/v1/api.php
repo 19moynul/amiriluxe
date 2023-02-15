@@ -196,7 +196,7 @@ Route::group(['namespace' => 'Api\V1', 'middleware'=>'localization'], function (
 
     Route::group(['prefix' => 'business-category'], function () {
         Route::get('/',[BusinessCategoryController::class,'list']);
-        Route::get('/products/{category_id}',[BusinessCategoryController::class,'productList']);
+        Route::get('/products/{category_id}',[BusinessCategoryController::class,'categoryProducts']);
     });
 
     Route::group(['middleware'=>['module-check']], function(){

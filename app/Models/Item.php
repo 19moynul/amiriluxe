@@ -132,7 +132,7 @@ class Item extends Model
 
      public function getImageUrlAttribute(){
         if($this->image){
-             return url('asset/product/'.$this->image);
+             return url('storage/app/public/product/'.$this->image);
          }else{
             return 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png';
         }

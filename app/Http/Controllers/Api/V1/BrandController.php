@@ -41,7 +41,7 @@ class BrandController extends Controller
                 'image'=>$product->image_url,
                 'regular_price'=>$product->price+$discount_price,
                 'final_price'=>$product->price,
-                'discount'=>$discount_price,
+                'discount'=>$product->discount_type == 'percent'?$discount_price.'%':$discount_price,
                 'unit'=>$product->unit,
 
             ];

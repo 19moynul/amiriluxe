@@ -47,4 +47,8 @@ class Businesscategory extends Model
     {
         return $this->hasMany(BusinessCategoryProduct::class, 'category_id', 'id');
     }
+
+    public function banners(){
+        return $this->hasMany(BusinessBanner::class, 'category_id', 'id');
+    }
 }
