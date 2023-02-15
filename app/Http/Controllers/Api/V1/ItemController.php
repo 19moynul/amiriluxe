@@ -163,7 +163,25 @@ class ItemController extends Controller
         try {
             $item = ProductLogic::get_product($id);
             $item = Helpers::product_data_formatting($item, false, false, app()->getLocale());
-            return response()->json($item, 200);
+            $relatedProducts = Item::where('subcategory_id',$item->subcategory_id)->orWhere('brand_id',$item->brand_id)->random()->get()->limit(6);
+
+            $relatedProductsData=[];
+            foreach($relatedProducts as $product){
+                $discount_price = $product->discount_type=='percent'?$product->discount/100*$product->price:$product->discount;
+                $data[]=[
+                    'id'=>$product->id,
+                    'name'=>$product->name,
+                    'image'=>$product->image_url,
+                    'regular_price'=>$product->price+$discount_price,
+                    'final_price'=>$product->price,
+                    'discount'=>$product->discount_type == 'percent'?$discount_price.'%':$discount_price,
+                    'unit'=>$product->unit,
+
+                ];
+            }
+
+
+            return response()->json(['item'=>$item,'related_products'=>$relatedProductsData], 200);
         } catch (\Exception $e) {
             return response()->json([
                 'errors' => ['code' => 'product-001', 'message' => translate('messages.not_found')]
