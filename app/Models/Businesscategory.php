@@ -45,6 +45,6 @@ class Businesscategory extends Model
     }
     public function products()
     {
-        return $this->hasMany(Item::class, 'id', 'product_id');
+        return $this->hasMany(BusinessCategoryProduct::class, 'category_id', 'id');
     }
 }
