@@ -11,7 +11,7 @@ class BusinessCategoryController extends Controller
 {
     public function list(){
         $lang = request('lang')?request('lang'):'en';
-        $categories = Businesscategory::select('*','name_'.$lang.' as name')->with('products.product')->where('status',1)->orderBy('sort','asc')->get();
+        $categories = Businesscategory::select('*','name_'.$lang.' as name')->with('products.product')->where('status',1)->where('module_id',request()->header('moduleId'))->orderBy('sort','asc')->get();
         $categoryProduct = [];
         foreach($categories as $category){
 
