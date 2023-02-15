@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use App\Models\Businesscategory;
 use App\Models\BusinessCategoryProduct;
 use Illuminate\Http\Request;
@@ -14,8 +15,6 @@ class BusinessCategoryController extends Controller
         $categories = Businesscategory::select('*','name_'.$lang.' as name')->with('products.product')->where('status',1)->where('module_id',request()->header('moduleId'))->orderBy('sort','asc')->get();
         $categoryProduct = [];
         foreach($categories as $category){
-
-
             if($category->type==2){
                 $childs = [];
 
@@ -49,7 +48,10 @@ class BusinessCategoryController extends Controller
             // $data->childs = $prod->produc
         }
 
-        return response()->json(['data'=>$categoryProduct]);
+        $brands  = Brand::select('id','name_'.$lang,'image')->where('status',1)->orderBy('id','desc')->get();
+
+
+        return response()->json(['categories'=>$categoryProduct,'brands'=>$brands]);
     }
 
 
