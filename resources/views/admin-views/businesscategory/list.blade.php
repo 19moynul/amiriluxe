@@ -50,7 +50,8 @@
   crossorigin="anonymous"></script> --}}
     {{-- <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.js"></script> --}}
 <script>
-    $(function () {
+    jQuery.noConflict();
+    jQuery(document).ready(function($) {
         // $('#bctable').DataTable();
 
         $("#tablecontents").sortable({
@@ -65,7 +66,7 @@
         function sendOrderToServer() {
             console.log('call api');
         }
-    })
+    });
 
 
 
