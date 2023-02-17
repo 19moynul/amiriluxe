@@ -29,6 +29,7 @@ class BrandController extends Controller
         $brandInfo = Brand::select('id','name_'.$lang,'image')->where('id',$brand_id)->first();
         $products = Item::select(DB::raw('items.id,items.name,items.image,items.price,units.unit,discount,discount_type'))
         ->where('brand_id',$brand_id)
+        ->hasStore()
         ->leftjoin('units','units.id','=','items.unit_id')
         ->get();
 
