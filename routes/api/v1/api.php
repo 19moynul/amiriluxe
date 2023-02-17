@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Api\V1\BrandController;
 use App\Http\Controllers\Api\V1\BusinessCategoryController;
+use App\Http\Controllers\Api\V1\ItemController as V1ItemController;
 use App\Http\Controllers\Api\V1\SearchController;
+use App\Http\Controllers\Api\V1\Vendor\ItemController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -268,6 +270,7 @@ Route::group(['namespace' => 'Api\V1', 'middleware'=>'localization'], function (
 
 
         Route::group(['prefix' => 'items'], function () {
+            Route::get('related-products/{category_id}',[V1ItemController::class,'relatedProduct']);
             Route::get('latest', 'ItemController@get_latest_products');
             Route::get('popular', 'ItemController@get_popular_products');
             Route::get('most-reviewed', 'ItemController@get_most_reviewed_products');

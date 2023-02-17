@@ -163,29 +163,9 @@ class ItemController extends Controller
         try {
             $item = ProductLogic::get_product($id);
             $item = Helpers::product_data_formatting($item, false, false, app()->getLocale());
-            $relatedProducts = Item::where('id','!=',$item['id'])->where(function($query)use($item){
-                $query->where('category_id',$item->category_id)->orWhere('brand_id',$item->brand_id);
-            })->inRandomOrder()->get()->take(6);
 
-            $relatedProductsData=[];
-            foreach($relatedProducts as $product){
-                $discount_price = $product->discount_type=='percent'?$product->discount/100*$product->price:$product->discount;
-                $relatedProductsData[]=[
-                    'id'=>$product->id,
-                    'name'=>$product->name,
-                    'image'=>$product->image_url,
-                    'regular_price'=>$product->price+$discount_price,
-                    'final_price'=>$product->price,
-                    'discount'=>$product->discount_type == 'percent'?$discount_price.'%':$discount_price,
-                    'unit'=>$product->unit,
-
-                ];
-            }
-
-
-            return response()->json(['item'=>$item,'related_products'=>$relatedProductsData], 200);
+            return response()->json($item, 200);
         } catch (\Exception $e) {
-            return $e;
             return response()->json([
                 'errors' => ['code' => 'product-001', 'message' => translate('messages.not_found')]
             ], 404);
@@ -328,5 +308,29 @@ class ItemController extends Controller
         $item->increment('rating_count');
 
         return response()->json(['message' => translate('messages.review_submited_successfully')], 200);
+    }
+
+
+    public function relatedProduct($categoryId){
+        $moduleId= request()->header('moduleId');
+        $product_id =  request('product_id');
+        $relatedProducts = Item::where('id','!=',$product_id)->where('category_id',$categoryId)->where('module_id',$moduleId)->inRandomOrder()->get()->take(6);
+
+        $relatedProductsData=[];
+        foreach($relatedProducts as $product){
+            $discount_price = $product->discount_type=='percent'?$product->discount/100*$product->price:$product->discount;
+            $relatedProductsData[]=[
+                'id'=>$product->id,
+                'name'=>$product->name,
+                'image'=>$product->image_url,
+                'regular_price'=>$product->price+$discount_price,
+                'final_price'=>$product->price,
+                'discount'=>$product->discount_type == 'percent'?$discount_price.'%':$discount_price,
+                'unit'=>($product->unit)->unit,
+            ];
+        }
+
+        return response()->json(['data'=>$relatedProductsData],200);
+
     }
 }
