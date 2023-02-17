@@ -40,7 +40,7 @@ class Store extends Model
         'prescription_order'=>'boolean'
     ];
 
-    protected $appends = ['gst_status','gst_code'];
+    protected $appends = ['gst_status','gst_code','store_url'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -50,6 +50,11 @@ class Store extends Model
     protected $hidden = [
         'gst'
     ];
+
+    public function getStoreUrlAttribute(){
+        // https://amiriluxe.com/storage/app/public/store/
+        return url('storage/app/public/store/').'/'.$this->logo;
+    }
 
     public function vendor()
     {

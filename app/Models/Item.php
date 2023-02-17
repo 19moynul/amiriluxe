@@ -49,6 +49,15 @@ class Item extends Model
         });
     }
 
+    public function scopeHasStore($query){
+        $zoneId = request()->header('zoneId');
+        $query->whereHas('store',function($query)use($zoneId){
+            if($zoneId){
+                $query->where('zone_id',$zoneId);
+            }
+        });
+    }
+
     public function scopePopular($query)
     {
         return $query->orderBy('order_count', 'desc');

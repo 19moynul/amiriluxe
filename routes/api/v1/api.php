@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\V1\BrandController;
 use App\Http\Controllers\Api\V1\BusinessCategoryController;
+use App\Http\Controllers\Api\V1\SearchController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -196,10 +197,15 @@ Route::group(['namespace' => 'Api\V1', 'middleware'=>'localization'], function (
     Route::get('business-category/products/{category_id}',[BusinessCategoryController::class,'categoryProducts']);
 
 
+
     Route::group(['middleware'=>['module-check']], function(){
         Route::group(['prefix' => 'business-category'], function () {
             Route::get('/',[BusinessCategoryController::class,'list']);
         });
+        Route::get('/search/recommend',[SearchController::class,'list']);
+        Route::get('/get-related-products',[SearchController::class,'getRelatedProducts']);
+
+
         Route::group(['prefix' => 'customer', 'middleware' => 'auth:api'], function () {
             Route::get('notifications', 'NotificationController@get_notifications');
             Route::get('info', 'CustomerController@info');
