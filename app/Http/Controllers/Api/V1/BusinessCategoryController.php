@@ -6,12 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Businesscategory;
 use App\Models\BusinessCategoryProduct;
+use App\Models\Zone;
 use Illuminate\Http\Request;
 
 class BusinessCategoryController extends Controller
 {
     public function list(){
         $lang = request('lang')?request('lang'):'en';
+        $zoneId = request()->header('zoneId');
         $categories = Businesscategory::select('*','name_'.$lang.' as name')->with('products.product')->where('status',1)->where('module_id',request()->header('moduleId'))->orderBy('sort','asc')->get();
         $categoryProduct = [];
         foreach($categories as $category){
@@ -50,8 +52,12 @@ class BusinessCategoryController extends Controller
 
         $brands  = Brand::select('id','name_'.$lang,'image')->where('status',1)->orderBy('id','desc')->get();
 
+        $zone_subtitle = null;
+        if($zoneId){
+            $zone_subtitle = Zone::where('id',$zoneId)->value('subtitle');
+        }
 
-        return response()->json(['categories'=>$categoryProduct,'brands'=>$brands]);
+        return response()->json(['categories'=>$categoryProduct,'brands'=>$brands,'company_subtitle'=>$zone_subtitle]);
     }
 
 

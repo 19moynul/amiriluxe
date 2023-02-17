@@ -45,7 +45,14 @@ class Businesscategory extends Model
     }
     public function products()
     {
-        return $this->hasMany(BusinessCategoryProduct::class, 'category_id', 'id')->take(15);
+        $zoneId = request()->header('zoneId');
+        return $this->hasMany(BusinessCategoryProduct::class, 'category_id', 'id')
+        ->whereHas('product.store',function($query)use($zoneId){
+            if($zoneId){
+                $query->where('zone_id',$zoneId);
+            }
+        })
+        ->take(15);
     }
 
     public function banners(){
