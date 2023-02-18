@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
+use App\Models\Businesscategory;
 use App\Models\Item;
 use App\Models\Store;
 use Hamcrest\Arrays\IsArray;
@@ -68,9 +69,17 @@ class SearchController extends Controller
         if($zoneId){
             $stores = $stores->where('zone_id',$zoneId);
         }
-        $stores = $stores->inRandomOrder()->get()->take(16);
+        // $stores = $stores->inRandomOrder()->get()->take(16);
+        $banners = Businesscategory::with('banners:category_id,image')->where('type',1)->where('module_id',$moduleId)->get();
+        $bannersData = [];
+        foreach($banners as $banner){
+            $bannersData[] = [
+                'name'=>$banner->name_en,
+                'banners'=>$banner->banners
+            ];
+        }
 
-        return response()->json(['brands'=>$brands,'for_you'=>$data,'popular'=>$popular,'stores'=>$stores]);
+        return response()->json(['brands'=>$brands,'for_you'=>$data,'popular'=>$popular,'banners'=>$bannersData]);
 
     }
 
