@@ -46,10 +46,11 @@ class Businesscategory extends Model
     public function products()
     {
         $zoneId = request()->header('zoneId');
+        $zoneId = json_decode($zoneId);
         return $this->hasMany(BusinessCategoryProduct::class, 'category_id', 'id')
         ->whereHas('product.store',function($query)use($zoneId){
             if($zoneId){
-                $query->where('zone_id',$zoneId);
+                $query->whereIn('zone_id',$zoneId);
             }
         })
         ->take(15);

@@ -51,9 +51,10 @@ class Item extends Model
 
     public function scopeHasStore($query){
         $zoneId = request()->header('zoneId');
+        $zoneId = json_decode($zoneId);
         $query->whereHas('store',function($query)use($zoneId){
             if($zoneId){
-                $query->where('zone_id',$zoneId);
+                $query->whereIn('zone_id',$zoneId);
             }
         });
     }
