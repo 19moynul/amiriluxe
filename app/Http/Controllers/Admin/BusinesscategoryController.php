@@ -68,10 +68,11 @@ class BusinesscategoryController extends Controller
     {
         DB::beginTransaction();
         try {
-            $sortValue = Businesscategory::max('sort')+1;
-            $data = ['name_en' => $request->name_en, 'name_hi' => $request->name_hi, 'name_mr' => $request->name_mr, 'module_id' => $request->module_id, 'type' => $request->type, 'sort' => $sortValue, 'status' => $request->status];
+            $data = ['name_en' => $request->name_en, 'name_hi' => $request->name_hi, 'name_mr' => $request->name_mr, 'module_id' => $request->module_id, 'type' => $request->type, 'status' => $request->status];
 
             if ($request->has('id')) {
+                $sortValue = Businesscategory::max('sort')+1;
+                $data['sort']=$sortValue;
                 $bCategory = Businesscategory::where('id', $request->id)->update($data);
                 $bCategoryId = $request->id;
                 $text = 'updated';
