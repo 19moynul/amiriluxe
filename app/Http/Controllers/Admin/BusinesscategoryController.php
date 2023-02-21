@@ -73,9 +73,11 @@ class BusinesscategoryController extends Controller
 
             if ($request->has('id')) {
                 $bCategory = Businesscategory::where('id', $request->id)->update($data);
+                $bCategoryId = $request->id;
                 $text = 'updated';
             } else {
                 $bCategory = Businesscategory::create($data);
+                $bCategoryId = $bCategory->id;
                 $text = 'created';
             }
 
@@ -94,7 +96,7 @@ class BusinesscategoryController extends Controller
                     }
                     foreach($request->file('images') as $file){
                         $image = Image::imageUpload($file, '/business_category/');
-                        $images[]=['image'=>$image,'category_id'=>$bCategory->id];
+                        $images[]=['image'=>$image,'category_id'=>$bCategoryId];
                     }
                     BusinessBanner::insert($images);
 
@@ -105,7 +107,7 @@ class BusinesscategoryController extends Controller
                 }
                 $products = [];
                 foreach($request->products as $product){
-                    $products[]=['category_id'=>$bCategory->id,'product_id'=>$product];
+                    $products[]=['category_id'=>$bCategoryId,'product_id'=>$product];
                 }
                 BusinessCategoryProduct::insert($products);
             }
