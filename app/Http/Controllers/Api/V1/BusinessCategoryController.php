@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\CentralLogics\Helpers;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Businesscategory;
@@ -19,25 +20,33 @@ class BusinessCategoryController extends Controller
         foreach($categories as $category){
             if($category->type==2){
                 $childs = [];
+                $allProduct = [];
 
                 foreach($category->products as $catProduct){
-                    $discount_type = optional($catProduct->product)->discount_type;
-                    $discount = optional($catProduct->product)->discount;
-                    $discount_price = $discount_type=='percent'?$discount/100*optional($catProduct->product)->price:$discount;
-                    $childs[] = [
-                        'id'=>optional($catProduct->product)->id,
-                        'name'=>optional($catProduct->product)->name,
-                        'unit'=>optional($catProduct->product->unit)->unit,
-                        'image'=>optional($catProduct->product)->image_url,
-                        'regular_price'=>optional($catProduct->product)->price+$discount_price,
-                        'final_price'=>optional($catProduct->product)->price,
-                        'discount'=>$discount_type == 'percent'?$discount_price.'%':$discount_price,
-                    ];
+                    if($catProduct->product){
+                       $childs[] = Helpers::product_data_formatting($catProduct->product, false, false, app()->getLocale());
+                        // $allProduct[] = $catProduct->product;
+                    }
+
+                    // $discount_type = optional($catProduct->product)->discount_type;
+                    // $discount = optional($catProduct->product)->discount;
+                    // $discount_price = $discount_type=='percent'?$discount/100*optional($catProduct->product)->price:$discount;
+                    // $childs['image'] = [
+                    //     'id'=>optional($catProduct->product)->id,
+                    //     'name'=>optional($catProduct->product)->name,
+                    //     'unit'=>optional($catProduct->product->unit)->unit,
+                    //     'image'=>optional($catProduct->product)->image_url,
+                    //     'regular_price'=>optional($catProduct->product)->price+$discount_price,
+                    //     'final_price'=>optional($catProduct->product)->price,
+                    //     'discount'=>$discount_type == 'percent'?$discount_price.'%':$discount_price,
+                    // ];
                 }
+                // return $allProduct;
             }else{
                 $childs=[];
                 $childs = $category->banners;
             }
+
 
              $categoryProduct[]=[
                 'id'=>$category->id,
@@ -49,6 +58,8 @@ class BusinessCategoryController extends Controller
 
             // $data->childs = $prod->produc
         }
+
+            // return $allProduct;
 
         $brands  = Brand::select('id','name_'.$lang,'image')->where('status',1)->orderBy('id','desc')->get();
 
@@ -66,18 +77,20 @@ class BusinessCategoryController extends Controller
         $categoryProducts = BusinessCategoryProduct::with('product')->where('category_id',$category_id)->orderBy('id','desc')->get();
         $data = [];
         foreach($categoryProducts as $catProduct){
-            $discount_type = optional($catProduct->product)->discount_type;
-            $discount = optional($catProduct->product)->discount;
-            $discount_price = $discount_type=='percent'?$discount/100*optional($catProduct->product)->price:$discount;
-            $data[] = [
-                'id'=>optional($catProduct->product)->id,
-                'name'=>optional($catProduct->product)->name,
-                'unit'=>optional($catProduct->product->unit)->unit,
-                'image'=>optional($catProduct->product)->image_url,
-                'regular_price'=>optional($catProduct->product)->price+$discount_price,
-                'final_price'=>optional($catProduct->product)->price,
-                'discount'=>$discount_type == 'percent'?$discount_price.'%':$discount_price,
-            ];
+            // $discount_type = optional($catProduct->product)->discount_type;
+            // $discount = optional($catProduct->product)->discount;
+            // $discount_price = $discount_type=='percent'?$discount/100*optional($catProduct->product)->price:$discount;
+            // $data[] = [
+            //     'id'=>optional($catProduct->product)->id,
+            //     'name'=>optional($catProduct->product)->name,
+            //     'unit'=>optional($catProduct->product->unit)->unit,
+            //     'image'=>optional($catProduct->product)->image_url,
+            //     'regular_price'=>optional($catProduct->product)->price+$discount_price,
+            //     'final_price'=>optional($catProduct->product)->price,
+            //     'discount'=>$discount_type == 'percent'?$discount_price.'%':$discount_price,
+            // ];
+
+            $data[] = Helpers::product_data_formatting($catProduct->product, false, false, app()->getLocale());
         }
 
 

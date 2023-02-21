@@ -177,6 +177,34 @@ class Helpers
         } else {
             $variations = [];
             $categories = [];
+
+
+            if(is_array($data['category_ids'])){
+                $data['category_ids'] = json_encode($data['category_ids']);
+            }
+            if(is_array($data['attributes'])){
+                $data['attributes'] = json_encode($data['attributes']);
+            }
+            if(is_array($data['choice_options'])){
+                $data['choice_options'] = json_encode($data['choice_options']);
+            }
+            if(is_array($data['add_ons'])){
+                $data['add_ons'] = json_encode($data['add_ons']);
+            }
+            if(is_array($data['variations'])){
+                $data['variations'] = json_encode($data['variations']);
+            }
+            if(is_array($data['food_variations'])){
+                $data['food_variations'] = json_encode($data['food_variations']);
+            }
+            if(is_array($data['food_variations'])){
+                $data['food_variations'] = json_encode($data['food_variations']);
+            }
+            if(is_array($data->rating)){
+                $data->rating = json_encode($data->rating);
+            }
+
+
             foreach (json_decode($data['category_ids']) as $value) {
                 $categories[] = ['id' => (string)$value->id, 'position' => $value->position];
             }
@@ -622,7 +650,7 @@ class Helpers
         if(!request()->is('/api*')){
             $currency = session()->get('currency_code');
         }
-       
+
         return $currency;
     }
 
