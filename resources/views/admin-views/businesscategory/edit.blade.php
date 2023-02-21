@@ -17,6 +17,7 @@
                 <div class="mi-body">
                     @include('layouts.admin.toaster')
                     <!--mi-card body started--> <input name="_token" type="hidden" value="{{ csrf_token() }}">
+                    <!--mi-card body started--> <input name="id" type="hidden" value="{{ $data->id }}">
                     <div class="form-group ">
                         <label>TYPE (CAN'T CHANGE)<b class="text-danger">*</b> </label>
                         <select class="form-control" id="type" name="type" id="type" required>
