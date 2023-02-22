@@ -178,6 +178,7 @@ class Helpers
             $variations = [];
             $categories = [];
 
+            $data['product_data_formatting']=null;
 
             if(is_array($data['category_ids'])){
                 $data['category_ids'] = json_encode($data['category_ids']);
@@ -292,7 +293,6 @@ class Helpers
             unset($data['store']);
             unset($data['rating']);
 
-            $data['product_data_formatting']=null;
         }
 
         return $data;
