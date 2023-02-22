@@ -179,6 +179,7 @@ class Helpers
             $categories = [];
 
             $data['product_data_formatting']=null;
+            $data['available_date_starts']=null;
 
             if(is_array($data['category_ids'])){
                 $data['category_ids'] = json_encode($data['category_ids']);
