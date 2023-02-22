@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\CentralLogics\Helpers;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Businesscategory;
@@ -32,7 +33,7 @@ class SearchController extends Controller
         $data = [];
 
         foreach($items as $item){
-            $data[] = Helpers::product_data_formatting($item, false, false, app()->getLocale());
+            $data[] = Helpers::product_data_formatting($item, false, false, app()->getLocale(),true);
         }
 
         $popularProducts = Item::hasStore()->popular()->module($moduleId)->get()->take(15);
