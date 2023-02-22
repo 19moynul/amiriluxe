@@ -46,7 +46,7 @@ class BusinessCategoryController extends Controller
                 $childs=[];
                 foreach($category->banners as $banner){
                     $childs[] = [
-                        'image_url'=>$banner->image_url,
+                        'image'=>$banner->image_url,
                         "name"=>null,
                         "description"=>null,
                         "image"=>null,
@@ -95,7 +95,7 @@ class BusinessCategoryController extends Controller
                 'id'=>$category->id,
                 'name'=>$category->name,
                 'type'=>$category->type == 1?'banner':'category',
-                'childs'=>$childs
+                'items'=>$childs
             ];
 
 
@@ -137,7 +137,7 @@ class BusinessCategoryController extends Controller
         }
 
 
-        return response()->json(['data'=>$data]);
+        return response()->json(['items'=>$data]);
     }
 
 
