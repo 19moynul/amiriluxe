@@ -50,6 +50,6 @@ class BrandController extends Controller
             // ];
         }
 
-        return response()->json(['brandInfo'=>$brandInfo,'products'=>$data],200);
+        return response()->json(['brandInfo'=>$brandInfo,'items'=>$data],200);
     }
 }

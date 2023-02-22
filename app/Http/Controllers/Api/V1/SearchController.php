@@ -32,36 +32,14 @@ class SearchController extends Controller
         $data = [];
 
         foreach($items as $item){
-            $discount_type = $item->discount_type;
-            $discount = $item->discount;
-            $discount_price = $discount_type=='percent'?$discount/100*$item->price:$discount;
-            $data[] = [
-                'id'=>$item->id,
-                'name'=>$item->name,
-                'unit'=>optional($item->unit)->unit,
-                'image'=>$item->image_url,
-                'regular_price'=>$item->price+$discount_price,
-                'final_price'=>$item->price,
-                'discount'=>$discount_type == 'percent'?$discount_price.'%':$discount_price,
-            ];
+            $data[] = Helpers::product_data_formatting($item, false, false, app()->getLocale());
         }
 
         $popularProducts = Item::hasStore()->popular()->module($moduleId)->get()->take(15);
 
         $popular = [];
         foreach($popularProducts as $item){
-            $discount_type = $item->discount_type;
-            $discount = $item->discount;
-            $discount_price = $discount_type=='percent'?$discount/100*$item->price:$discount;
-            $popular[] = [
-                'id'=>$item->id,
-                'name'=>$item->name,
-                'unit'=>optional($item->unit)->unit,
-                'image'=>$item->image_url,
-                'regular_price'=>$item->price+$discount_price,
-                'final_price'=>$item->price,
-                'discount'=>$discount_type == 'percent'?$discount_price.'%':$discount_price,
-            ];
+            $data[] = Helpers::product_data_formatting($item, false, false, app()->getLocale());
         }
 
 
@@ -73,9 +51,53 @@ class SearchController extends Controller
         $banners = Businesscategory::with('banners:category_id,image')->where('type',1)->where('module_id',$moduleId)->get();
         $bannersData = [];
         foreach($banners as $banner){
+            $bans = [];
+            foreach($banner->banners as $banner){
+                $bans[] = [
+                        'image'=>$banner->image_url,
+                        "name"=>null,
+                        "description"=>null,
+                        "image"=>null,
+                        "category_id"=>null,
+                        "category_ids"=>[],
+                        "variations"=>[],
+                        "add_ons"=>[],
+                        "attributes"=>[],
+                        "choice_options"=>[],
+                        "price"=>null,
+                        "tax"=>null,
+                        "tax_type"=>null,
+                        "discount"=>null,
+                        "discount_type"=>null,
+                        "available_time_starts"=>null,
+                        "available_time_ends"=>null,
+                        "veg"=>null,
+                        "status"=>null,
+                        "store_id"=>null,
+                        "created_at"=>null,
+                        "updated_at"=>null,
+                        "order_count"=>null,
+                        "avg_rating"=>null,
+                        "rating_count"=>null,
+                        "module_id"=>null,
+                        "stock"=>null,
+                        "unit_id"=>null,
+                        "images"=>[],
+                        "food_variations"=>[],
+                        "brand_id"=>null,
+                        "store_name"=>null,
+                        "module_type"=>null,
+                        "zone_id"=>null,
+                        "store_discount"=>null,
+                        "schedule_order"=>null,
+                        "unit_type"=>null,
+                        "module"=>null,
+                        "unit"=>null
+                    ];
+            }
             $bannersData[] = [
                 'name'=>$banner->name_en,
-                'banners'=>$banner->banners
+                'banners'=>$bans
             ];
         }
 
@@ -105,18 +127,7 @@ class SearchController extends Controller
         $data = [];
 
         foreach($items as $item){
-            $discount_type = $item->discount_type;
-            $discount = $item->discount;
-            $discount_price = $discount_type=='percent'?$discount/100*$item->price:$discount;
-            $data[] = [
-                'id'=>$item->id,
-                'name'=>$item->name,
-                'unit'=>optional($item->unit)->unit,
-                'image'=>$item->image_url,
-                'regular_price'=>$item->price+$discount_price,
-                'final_price'=>$item->price,
-                'discount'=>$discount_type == 'percent'?$discount_price.'%':$discount_price,
-            ];
+            $data[] = Helpers::product_data_formatting($item, false, false, app()->getLocale());
         }
 
         return response()->json(['data'=>$data],200);
