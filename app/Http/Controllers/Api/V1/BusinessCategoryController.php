@@ -46,7 +46,7 @@ class BusinessCategoryController extends Controller
                 $childs=[];
                 foreach($category->banners as $banner){
                     $childs[] = [
-                        'image_url'=>$banner->image_url
+                        'image_url'=>$banner->image_url,
                         "name"=>null,
                         "description"=>null,
                         "image"=>null,
