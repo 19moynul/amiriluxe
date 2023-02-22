@@ -292,7 +292,7 @@ class Helpers
             unset($data['store']);
             unset($data['rating']);
 
-            $data['product_data_formatting']=null
+            $data['product_data_formatting']=null;
         }
 
         return $data;
