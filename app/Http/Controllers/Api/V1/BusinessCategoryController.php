@@ -49,7 +49,6 @@ class BusinessCategoryController extends Controller
                         'image'=>$banner->image_url,
                         "name"=>null,
                         "description"=>null,
-                        "image"=>null,
                         "category_id"=>null,
                         "category_ids"=>[],
                         "variations"=>[],
@@ -84,7 +83,8 @@ class BusinessCategoryController extends Controller
                         "schedule_order"=>null,
                         "unit_type"=>null,
                         "module"=>null,
-                        "unit"=>null
+                        "unit"=>null,
+                        "available_date_starts"=>null,
                     ];
                 }
                 // $childs = $category->banners;
