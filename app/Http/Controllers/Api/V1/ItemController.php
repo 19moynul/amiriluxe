@@ -318,19 +318,10 @@ class ItemController extends Controller
 
         $relatedProductsData=[];
         foreach($relatedProducts as $product){
-            $discount_price = $product->discount_type=='percent'?$product->discount/100*$product->price:$product->discount;
-            $relatedProductsData[]=[
-                'id'=>$product->id,
-                'name'=>$product->name,
-                'image'=>$product->image_url,
-                'regular_price'=>$product->price+$discount_price,
-                'final_price'=>$product->price,
-                'discount'=>$product->discount_type == 'percent'?$discount_price.'%':$discount_price,
-                'unit'=>($product->unit)->unit,
-            ];
+            $relatedProductsData[] = Helpers::product_data_formatting($product, false, false, app()->getLocale(),true);
         }
 
-        return response()->json(['data'=>$relatedProductsData],200);
+        return response()->json(['items'=>$relatedProductsData],200);
 
     }
 }
