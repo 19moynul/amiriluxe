@@ -24,7 +24,7 @@ class BusinessCategoryController extends Controller
 
                 foreach($category->products as $catProduct){
                     if($catProduct->product){
-                       $childs[] = Helpers::product_data_formatting($catProduct->product, false, false, app()->getLocale());
+                       $childs[] = Helpers::product_data_formatting($catProduct->product, false, false, app()->getLocale(),true);
                         // $allProduct[] = $catProduct->product;
                     }
 
@@ -133,7 +133,7 @@ class BusinessCategoryController extends Controller
             //     'discount'=>$discount_type == 'percent'?$discount_price.'%':$discount_price,
             // ];
 
-            $data[] = Helpers::product_data_formatting($catProduct->product, false, false, app()->getLocale());
+            $data[] = Helpers::product_data_formatting($catProduct->product, false, false, app()->getLocale(),true);
         }
 
 

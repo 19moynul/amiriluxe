@@ -36,7 +36,7 @@ class BrandController extends Controller
 
         $data=[];
         foreach($products as $product){
-            $data[] = Helpers::product_data_formatting($product, false, false, app()->getLocale());
+            $data[] = Helpers::product_data_formatting($product, false, false, app()->getLocale(),true);
             // $discount_price = $product->discount_type=='percent'?$product->discount/100*$product->price:$product->discount;
             // $data[]=[
             //     'id'=>$product->id,

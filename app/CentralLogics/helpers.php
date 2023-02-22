@@ -77,7 +77,7 @@ class Helpers
         return $data;
     }
 
-    public static function product_data_formatting($data, $multi_data = false, $trans = false, $local = 'en')
+    public static function product_data_formatting($data, $multi_data = false, $trans = false, $local = 'en',$manupulateData=false)
     {
         $storage = [];
         if ($multi_data == true) {
@@ -289,6 +289,10 @@ class Helpers
             }
             if (!$trans) {
                 unset($data['translations']);
+            }
+
+            if($manupulateData){
+                $data['unit_type']=$data['unit'];
             }
 
             unset($data['store']);

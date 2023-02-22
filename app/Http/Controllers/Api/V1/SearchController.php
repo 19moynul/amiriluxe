@@ -39,7 +39,7 @@ class SearchController extends Controller
 
         $popular = [];
         foreach($popularProducts as $item){
-            $data[] = Helpers::product_data_formatting($item, false, false, app()->getLocale());
+            $data[] = Helpers::product_data_formatting($item, false, false, app()->getLocale(),true);
         }
 
 
@@ -127,7 +127,7 @@ class SearchController extends Controller
         $data = [];
 
         foreach($items as $item){
-            $data[] = Helpers::product_data_formatting($item, false, false, app()->getLocale());
+            $data[] = Helpers::product_data_formatting($item, false, false, app()->getLocale(),true);
         }
 
         return response()->json(['data'=>$data],200);
