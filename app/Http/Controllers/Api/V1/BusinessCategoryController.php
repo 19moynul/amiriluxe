@@ -44,6 +44,49 @@ class BusinessCategoryController extends Controller
                 // return $allProduct;
             }else{
                 $childs=[];
+                foreach($category->banners as $banner){
+                    $childs[] = [
+                        'image_url'=>$banner->image_url
+                        "name"=>null,
+                        "description"=>null,
+                        "image"=>null,
+                        "category_id"=>null,
+                        "category_ids"=>[],
+                        "variations"=>[],
+                        "add_ons"=>[],
+                        "attributes"=>[],
+                        "choice_options"=>[],
+                        "price"=>null,
+                        "tax"=>null,
+                        "tax_type"=>null,
+                        "discount"=>null,
+                        "discount_type"=>null,
+                        "available_time_starts"=>null,
+                        "available_time_ends"=>null,
+                        "veg"=>null,
+                        "status"=>null,
+                        "store_id"=>null,
+                        "created_at"=>null,
+                        "updated_at"=>null,
+                        "order_count"=>null,
+                        "avg_rating"=>null,
+                        "rating_count"=>null,
+                        "module_id"=>null,
+                        "stock"=>null,
+                        "unit_id"=>null,
+                        "images"=>[],
+                        "food_variations"=>[],
+                        "brand_id"=>null,
+                        "store_name"=>null,
+                        "module_type"=>null,
+                        "zone_id"=>null,
+                        "store_discount"=>null,
+                        "schedule_order"=>null,
+                        "unit_type"=>null,
+                        "module"=>null,
+                        "unit"=>null
+                    ];
+                }
                 $childs = $category->banners;
             }
 
