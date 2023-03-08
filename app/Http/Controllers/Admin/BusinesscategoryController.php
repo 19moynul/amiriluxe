@@ -66,9 +66,10 @@ class BusinesscategoryController extends Controller
 
     public function store(BusinesscategoryRequest $request)
     {
+        // dd($request->banner_type,$request->store_id,$request->images);
         DB::beginTransaction();
         try {
-            $data = ['name_en' => $request->name_en, 'name_hi' => $request->name_hi, 'name_mr' => $request->name_mr, 'module_id' => $request->module_id, 'type' => $request->type, 'status' => $request->status];
+            $data = ['name_en' => $request->name_en, 'name_hi' => $request->name_hi, 'name_mr' => $request->name_mr, 'module_id' => $request->module_id, 'type' => $request->type, 'status' => $request->status,'zone_id'=>$request->zone_id];
 
             if ($request->has('id')) {
                 $bCategory = Businesscategory::where('id', $request->id)->update($data);
@@ -85,20 +86,27 @@ class BusinesscategoryController extends Controller
             if($request->type==1){
                 if($request->hasFile('images')){
                     $images = [];
-                    if ($request->has('id')) {
-                        $allImages = BusinessBanner::where(['category_id'=>$request->id])->get();
-                        foreach($allImages as $image){
-                            $path = url('/images/brand/').$image->image;
-                            if(file_exists($path)){
-                                unlink($path);
-                            }
-                            $image->delete();
-                        }
-                    }
-                    foreach($request->file('images') as $file){
+                    // if ($request->has('id')) {
+                    //     $allImages = BusinessBanner::where(['category_id'=>$request->id])->get();
+                    //     foreach($allImages as $image){
+                    //         $path = url('/images/brand/').$image->image;
+                    //         if(file_exists($path)){
+                    //             unlink($path);
+                    //         }
+                    //         $image->delete();
+                    //     }
+                    // }
+                    foreach($request->file('images') as $key=>$file){
                         $image = Image::imageUpload($file, '/business_category/');
-                        $images[]=['image'=>$image,'category_id'=>$bCategoryId];
+                        $bannerType = $request->banner_type[$key];
+                        $images[]=[
+                            'image'=>$image,
+                            'data_id'=>$bannerType=='store'?$request['store_id_'.$key]:$request['item_id_'.$key],
+                            'type'=>$bannerType,
+                            'category_id'=>$bCategoryId,
+                        ];
                     }
+
                     BusinessBanner::insert($images);
 
                 }

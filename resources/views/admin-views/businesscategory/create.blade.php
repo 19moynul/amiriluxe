@@ -31,8 +31,8 @@
 
                             <div class="row">
                                 <div class="form-group col-sm-6">
-                                    <label class="input-label" for="title">{{ translate('messages.zone') }}</label>
-                                    <select name="zone_id" id="zone" class="form-control js-select2-custom">
+                                    <label class="input-label" for="title">{{ translate('messages.zone') }} <span class="text-danger">*</span> </label>
+                                    <select name="zone_id" id="zone" class="form-control js-select2-custom" required>
                                         <option disabled selected>---{{ translate('messages.select') }}---</option>
                                         @php($zones = \App\Models\Zone::active()->get())
                                         @foreach ($zones as $zone)
@@ -48,10 +48,10 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <label class="input-label">{{ translate('messages.module') }}</label>
+                                    <label class="input-label">{{ translate('messages.module') }} <span class="text-danger">*</span></label>
                                     <select name="module_id" required class="form-control js-select2-custom"
                                         data-placeholder="{{ translate('messages.select') }} {{ translate('messages.module') }}"
-                                        id="module_select">
+                                        id="module_select" required>
                                         <option value="" selected disabled>{{ translate('messages.select') }}
                                             {{ translate('messages.module') }}</option>
                                         @foreach (\App\Models\Module::notParcel()->get() as $module)
@@ -59,7 +59,6 @@
                                         @endforeach
                                     </select>
                                 </div>
-
                             </div>
 
                             <div class="row">
@@ -109,8 +108,8 @@
                                     </div>
 
                                 </div>
-                                <div class="form-group col-sm-4">
-                                    <label>STATUS</label>
+                                <div class="form-group col-sm-4 m-auto">
+                                    <label style="margin-top:30px">STATUS</label>
                                     <select class="form-control" id="status" name="status">
                                         <option selected>SELECT ONE </option>
                                         <option value="1">Active</option>
@@ -124,17 +123,17 @@
                                 <div id="products" class="col-sm-12" style="display:none">
                                     <div class="form-group">
                                         <label for="">PRODUCTS</label>
-                                        <select name="products[]" multiple class="form-control" id="products-field">
-                                            <option value="select one"></option>
+                                        <select name="products[]" multiple class="form-control choice_item" id="products-field">
                                         </select>
                                     </div>
                                 </div>
                                 <div id="images" class="col-sm-12" style="display:none">
                                     @for ($i = 0; $i < 3; $i++)
+
                                         <div class="row">
                                             <div class="form-group col-sm-4">
-                                                <label for="">IMAGES</label>
-                                                <input type="file" name="images[]" class="form-control" multiple>
+                                                <label for="">IMAGES {{ $i+1 }} </label>
+                                                <input type="file" name="images[]" class="form-control">
                                             </div>
                                             <div class="form-group col-sm-4">
                                                 <label class="input-label"
@@ -147,7 +146,6 @@
                                                         {{ translate('messages.wise') }}</option>
                                                     <option value="item">{{ translate('messages.item') }}
                                                         {{ translate('messages.wise') }}</option>
-                                                    <option value="default">{{ translate('messages.default') }}</option>
                                                 </select>
                                             </div>
                                             <div class="form-group col-sm-4 store_wise"
@@ -155,7 +153,7 @@
                                                 <label class="input-label"
                                                     for="exampleFormControlSelect1">{{ translate('messages.store') }}<span
                                                         class="input-label-secondary"></span></label>
-                                                <select name="store_id[]" id="store_id_{{ $i }}"
+                                                <select name="store_id_{{ $i }}" id="store_id_{{ $i }}"
                                                     class="js-data-example-ajax form-control store_id"
                                                     title="Select Store">
 
@@ -167,7 +165,7 @@
                                                 <label class="input-label"
                                                     for="exampleFormControlInput1">{{ translate('messages.select') }}
                                                     {{ translate('messages.item') }}</label>
-                                                <select name="item_id[]" id="choice_item_{{ $i }}"
+                                                <select name="item_id_{{ $i }}" id="choice_item_{{ $i }}"
                                                     class="form-control js-select2-custom choice_item"
                                                     placeholder="{{ translate('messages.select_item') }}">
 
@@ -240,6 +238,7 @@
     <!--end of mi-card-->
     @push('script_2')
         <script>
+            $('#products-field').select2();
             var zone_id = [];
             var module_id = 0;
 
