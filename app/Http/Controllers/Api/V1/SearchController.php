@@ -56,6 +56,8 @@ class SearchController extends Controller
             foreach($banner->banners as $banner){
                 $bans[] = [
                         'image'=>$banner->image_url,
+                        'type'=>$banner->type,
+                        'data_id'=>$banner->data_id,
                         "name"=>null,
                         "description"=>null,
                         "category_id"=>null,
