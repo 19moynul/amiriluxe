@@ -16,6 +16,7 @@ class SearchController extends Controller
     public function list(){
         $moduleId = request()->header('moduleId');
         $zoneId = request()->header('zoneId');
+        $zoneId = json_decode($zoneId);
         $interest = request('interest');
         $brands = Brand::select('id','name_en','image')->where('status',1)->get();
 
@@ -46,10 +47,10 @@ class SearchController extends Controller
 
         $stores = Store::select('id','name','logo')->where('status',1);
         if($zoneId){
-            $stores = $stores->where('zone_id',$zoneId);
+            $stores = $stores->whereIn('zone_id',$zoneId);
         }
         // $stores = $stores->inRandomOrder()->get()->take(16);
-        $banners = Businesscategory::with('banners:category_id,image')->where('type',1)->where('module_id',$moduleId)->get();
+        $banners = Businesscategory::with('banners:category_id,image')->where('type',1)->where('module_id',$moduleId)->whereIn('zone_id',$zoneId)->get();
         $bannersData = [];
         foreach($banners as $banner){
             $bans = [];
