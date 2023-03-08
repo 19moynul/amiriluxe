@@ -15,7 +15,7 @@ class BusinessCategoryController extends Controller
     public function list(){
         $lang = request('lang')?request('lang'):'en';
         $zoneId = request()->header('zoneId');
-        $zoneId = json_decode($zoneId);
+        $zoneId = is_array($zoneId)?$zoneId:json_decode($zoneId);
         $categories = Businesscategory::select('*','name_'.$lang.' as name')->with('products.product')->where('status',1)->where('module_id',request()->header('moduleId'))->whereIn('zone_id',$zoneId)->orderBy('sort','asc')->get();
         $categoryProduct = [];
         foreach($categories as $category){

@@ -16,7 +16,7 @@ class SearchController extends Controller
     public function list(){
         $moduleId = request()->header('moduleId');
         $zoneId = request()->header('zoneId');
-        $zoneId = json_decode($zoneId);
+        $zoneId = is_array($zoneId)?$zoneId:json_decode($zoneId);
         $interest = request('interest');
         $brands = Brand::select('id','name_en','image')->where('status',1)->get();
 
