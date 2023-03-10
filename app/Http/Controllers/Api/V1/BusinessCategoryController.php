@@ -111,7 +111,6 @@ class BusinessCategoryController extends Controller
 
         $zone_subtitle = null;
         if($zoneId){
-            $zoneId = json_decode($zoneId);
             $zone_subtitle = Zone::whereIn('id',$zoneId)->value('subtitle');
         }
 
