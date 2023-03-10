@@ -50,7 +50,7 @@ class SearchController extends Controller
             $stores = $stores->whereIn('zone_id',$zoneId);
         }
         // $stores = $stores->inRandomOrder()->get()->take(16);
-        $banners = Businesscategory::with('banners:category_id,image')->where('type',1)->where('module_id',$moduleId)->whereIn('zone_id',$zoneId)->get();
+        $banners = Businesscategory::with('banners:category_id,image,type,data_id')->where('type',1)->where('module_id',$moduleId)->whereIn('zone_id',$zoneId)->get();
         $bannersData = [];
         foreach($banners as $banner){
             $bans = [];
