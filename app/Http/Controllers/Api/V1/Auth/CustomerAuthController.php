@@ -259,6 +259,7 @@ class CustomerAuthController extends Controller
 
     public function login(Request $request)
     {
+        dd('we are here');
         $validator = Validator::make($request->all(), [
             'phone' => 'required',
             'password' => 'required|min:6'
