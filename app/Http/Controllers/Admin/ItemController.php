@@ -747,6 +747,7 @@ class ItemController extends Controller
                 'name' => $collection['name'],
                 'category_id' => $collection['sub_category_id'] ? $collection['sub_category_id'] : $collection['category_id'],
                 'category_ids' => json_encode([['id' => $collection['category_id'], 'position' => 0], ['id' => $collection['sub_category_id'], 'position' => 1]]),
+                'brand_id'=>$collection['brand_id'],
                 'veg' => $collection['veg'] ?? 0,  //$request->item_type;
                 'price' => $collection['price'],
                 'discount' => $collection['discount'],

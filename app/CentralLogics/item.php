@@ -260,6 +260,7 @@ class ProductLogic
                 'choice_options'=>str_replace(['{','}'],['(',')'],substr($item->choice_options, 1, -1)),
                 'store_id'=>$item->store_id,
                 'module_id'=>$item->module_id,
+                'brand_id'=>$item->brnad_id,
             ];
         }
 
